@@ -1,0 +1,2495 @@
+{
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "swagger": "2.0",
+    "info": {
+        "description": "Collects raw punch logs from biometric devices, file uploads, manual entry, and read-only import from a public ZKTeco SQL Server. Stores normalised rows in PunchRecords with deduplication. Does not calculate attendance (see AttendanceService).",
+        "title": "PunchDataService API",
+        "contact": {
+            "name": "EnterpriseERP Platform Team"
+        },
+        "version": "1.0"
+    },
+    "basePath": "/",
+    "paths": {
+        "/api/v1/punch-data/imports": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "imports"
+                ],
+                "summary": "List import batch history",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Filter by company id (from query or JWT)",
+                        "name": "companyId",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Filter by batch status",
+                        "name": "status",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "default": 1,
+                        "description": "Page (1-based)",
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "default": 50,
+                        "description": "Page size",
+                        "name": "pageSize",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_response_PagedResult-github_com_enterprise-erp_punchdata_internal_models_PunchImportBatch"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/punch-data/imports/{id}/errors": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "imports"
+                ],
+                "summary": "List row errors for an import batch",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Import batch id (uuid)",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "default": 1,
+                        "description": "Page (1-based)",
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "default": 100,
+                        "description": "Page size",
+                        "name": "pageSize",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_response_PagedResult-github_com_enterprise-erp_punchdata_internal_models_PunchImportError"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/punch-data/logs": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Returns a paginated slice of log payloads, newest first.",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "logs"
+                ],
+                "summary": "List uploaded log files",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Filter by company id",
+                        "name": "companyId",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Filter by device id",
+                        "name": "deviceId",
+                        "in": "query"
+                    },
+                    {
+                        "enum": [
+                            "Pending",
+                            "Processing",
+                            "Completed",
+                            "Failed"
+                        ],
+                        "type": "string",
+                        "description": "Filter by status",
+                        "name": "status",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "default": 1,
+                        "description": "Page number (1-based)",
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "default": 50,
+                        "description": "Page size (max 200)",
+                        "name": "pageSize",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_response_PagedResult-github_com_enterprise-erp_punchdata_internal_models_PunchLogFile"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/punch-data/logs/batch": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Persists a raw JSON batch (no file) and, unless `autoProcess=false`, immediately normalises it into punch records.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "logs"
+                ],
+                "summary": "Ingest a JSON batch of punches",
+                "parameters": [
+                    {
+                        "enum": [
+                            "true",
+                            "false"
+                        ],
+                        "type": "string",
+                        "default": "true",
+                        "description": "Process immediately after persisting",
+                        "name": "autoProcess",
+                        "in": "query"
+                    },
+                    {
+                        "description": "Batch payload: companyId, deviceId, source, records[]",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_processor.BatchPayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_models_PunchLogFile"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/punch-data/logs/upload": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Accepts a multipart upload of a CSV or JSON punch payload. The file is persisted and (unless `autoProcess=false`) immediately parsed into normalised punch records.",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "logs"
+                ],
+                "summary": "Upload a punch log file",
+                "parameters": [
+                    {
+                        "type": "file",
+                        "description": "Punch log file (CSV or JSON)",
+                        "name": "file",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Company id to associate with the payload",
+                        "name": "companyId",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Source device identifier",
+                        "name": "deviceId",
+                        "in": "formData"
+                    },
+                    {
+                        "enum": [
+                            "true",
+                            "false"
+                        ],
+                        "type": "string",
+                        "default": "true",
+                        "description": "Process immediately after upload",
+                        "name": "autoProcess",
+                        "in": "formData"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_models_PunchLogFile"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    },
+                    "413": {
+                        "description": "Request Entity Too Large",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/punch-data/logs/{id}": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Returns a single log payload row without the raw bytes (use /download for the bytes).",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "logs"
+                ],
+                "summary": "Get log file metadata",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Log file id (uuid)",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_models_PunchLogFile"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/punch-data/logs/{id}/download": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Streams back the bytes of the original uploaded log file.",
+                "produces": [
+                    "application/octet-stream"
+                ],
+                "tags": [
+                    "logs"
+                ],
+                "summary": "Download the original raw payload",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Log file id (uuid)",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "file"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/punch-data/logs/{id}/process": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Re-runs parsing + normalisation for the given log payload. Existing punch records derived from it are removed before reinsert.",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "logs"
+                ],
+                "summary": "(Re-)process a single log file",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Log file id (uuid)",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_processor_Result"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/punch-data/logs/{id}/records": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "logs"
+                ],
+                "summary": "List punch records for a log file",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Log file id (uuid)",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "default": 1,
+                        "description": "Page (1-based)",
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "default": 200,
+                        "description": "Page size",
+                        "name": "pageSize",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_response_PagedResult-github_com_enterprise-erp_punchdata_internal_models_PunchRecord"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/punch-data/machines": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "machines"
+                ],
+                "summary": "List punch machines",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Filter by company id",
+                        "name": "companyId",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Connection status filter",
+                        "name": "status",
+                        "in": "query"
+                    },
+                    {
+                        "type": "boolean",
+                        "description": "Filter by active flag",
+                        "name": "isActive",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "default": 1,
+                        "description": "Page (1-based)",
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "default": 50,
+                        "description": "Page size",
+                        "name": "pageSize",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_response_PagedResult-github_com_enterprise-erp_punchdata_internal_models_PunchMachine"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "machines"
+                ],
+                "summary": "Create or update a punch machine",
+                "parameters": [
+                    {
+                        "description": "Punch machine details",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/internal_handlers.CreateMachineRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_models_PunchMachine"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/punch-data/machines/bulk": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Upserts each machine in the machines array.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "machines"
+                ],
+                "summary": "Create or update punch machines in bulk",
+                "parameters": [
+                    {
+                        "description": "Punch machines",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/internal_handlers.BulkMachineRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-array_github_com_enterprise-erp_punchdata_internal_models_PunchMachine"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/punch-data/machines/{id}/connect": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "machines"
+                ],
+                "summary": "Test punch machine connectivity",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Machine id (uuid)",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_devices_zkteco_ConnectionResult"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    },
+                    "502": {
+                        "description": "Bad Gateway",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/punch-data/machines/{id}/sync": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Downloads ZKTeco attendance logs, stores a raw PunchLogFile, and processes it into PunchRecords. Attendance calculation is handled by AttendanceService.",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "machines"
+                ],
+                "summary": "Manually sync attendance from a punch machine",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Machine id (uuid)",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_sync_Result"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    },
+                    "502": {
+                        "description": "Bad Gateway",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/punch-data/process": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Runs the processor over every payload currently in `Pending` status, oldest first.",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "logs"
+                ],
+                "summary": "Process all pending log files",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "default": 50,
+                        "description": "Maximum number of payloads to process in one call",
+                        "name": "limit",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-array_github_com_enterprise-erp_punchdata_internal_processor_Result"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/punch-data/punches": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Paginated punch records. Pass companyId in query or JWT when scoped.",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "punches"
+                ],
+                "summary": "List raw punch logs",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Filter by company id",
+                        "name": "companyId",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Filter by employee code",
+                        "name": "employeeCode",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Filter by device id",
+                        "name": "deviceId",
+                        "in": "query"
+                    },
+                    {
+                        "enum": [
+                            "In",
+                            "Out",
+                            "Unknown"
+                        ],
+                        "type": "string",
+                        "description": "Filter by direction",
+                        "name": "direction",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Filter by source log file id (uuid)",
+                        "name": "logFileId",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Punch time from (RFC3339 or local)",
+                        "name": "from",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Punch time to (RFC3339 or local)",
+                        "name": "to",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "default": 1,
+                        "description": "Page (1-based)",
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "default": 100,
+                        "description": "Page size (max 500)",
+                        "name": "pageSize",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_response_PagedResult-github_com_enterprise-erp_punchdata_internal_models_PunchRecord"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/punch-data/punches/manual": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Does not calculate attendance (raw log collection only). Duplicate punches are ignored.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "punches"
+                ],
+                "summary": "Create a manual raw punch log",
+                "parameters": [
+                    {
+                        "description": "Manual punch",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/internal_handlers.manualPunchRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-internal_handlers_manualPunchResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/punch-data/remote/collect": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Read-only SELECT from remote CHECKINOUT; stores new rows in PunchRecords with deduplication (company + employee + device + punch time). Does not modify the remote database.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "remote-collect"
+                ],
+                "summary": "Collect punches from public ZKTeco SQL Server",
+                "parameters": [
+                    {
+                        "description": "Collect window",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/internal_handlers.remoteCollectBody"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_collector_RemoteCollectResult"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    },
+                    "502": {
+                        "description": "Bad Gateway",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    },
+                    "503": {
+                        "description": "Service Unavailable",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/punch-data/remote/collect/histories": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Paginated history of read-only imports from the public ZKTeco database.",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "remote-collect"
+                ],
+                "summary": "List remote collect runs",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Company filter",
+                        "name": "companyId",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "default": 1,
+                        "description": "Page (1-based)",
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "default": 20,
+                        "description": "Page size (max 100)",
+                        "name": "pageSize",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_response_PagedResult-github_com_enterprise-erp_punchdata_internal_models_RemoteCollectHistory"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    },
+                    "503": {
+                        "description": "Service Unavailable",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/punch-data/remote/collect/preview": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Counts rows on public CHECKINOUT in the time window without importing. Defaults to the last 24 hours when from/to are omitted.",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "remote-collect"
+                ],
+                "summary": "Preview remote punch row count",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "RFC3339 start (default: now - 24h)",
+                        "name": "from",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "RFC3339 end (default: now)",
+                        "name": "to",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-internal_handlers_remoteCollectPreviewResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    },
+                    "502": {
+                        "description": "Bad Gateway",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    },
+                    "503": {
+                        "description": "Service Unavailable",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/punch-data/sync-histories": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "machines"
+                ],
+                "summary": "List device sync history",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Filter by company id",
+                        "name": "companyId",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Sync status filter",
+                        "name": "status",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "default": 1,
+                        "description": "Page (1-based)",
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "default": 50,
+                        "description": "Page size",
+                        "name": "pageSize",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_response_PagedResult-github_com_enterprise-erp_punchdata_internal_models_DeviceSyncHistory"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any"
+                        }
+                    }
+                }
+            }
+        },
+        "/health": {
+            "get": {
+                "description": "Liveness probe + local PunchDataDB ping. When remote collect is configured, includes public ZKTeco SQL reachability (read-only ping).",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "health"
+                ],
+                "summary": "Health check",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/internal_handlers.HealthResponse"
+                        }
+                    },
+                    "503": {
+                        "description": "Service Unavailable",
+                        "schema": {
+                            "$ref": "#/definitions/internal_handlers.HealthResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "github_com_enterprise-erp_punchdata_internal_collector.RemoteCollectResult": {
+            "type": "object",
+            "properties": {
+                "duplicates": {
+                    "type": "integer"
+                },
+                "history": {
+                    "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_models.RemoteCollectHistory"
+                },
+                "inserted": {
+                    "type": "integer"
+                },
+                "logFile": {
+                    "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_models.PunchLogFile"
+                },
+                "remoteRows": {
+                    "type": "integer"
+                }
+            }
+        },
+        "github_com_enterprise-erp_punchdata_internal_devices_zkteco.ConnectionResult": {
+            "type": "object",
+            "properties": {
+                "checkedAt": {
+                    "type": "string"
+                },
+                "connected": {
+                    "type": "boolean"
+                },
+                "deviceClock": {
+                    "type": "string"
+                },
+                "deviceId": {
+                    "type": "string"
+                },
+                "firmware": {
+                    "type": "string"
+                },
+                "totalRecords": {
+                    "type": "integer"
+                },
+                "totalUsers": {
+                    "type": "integer"
+                }
+            }
+        },
+        "github_com_enterprise-erp_punchdata_internal_models.DeviceSyncHistory": {
+            "type": "object",
+            "properties": {
+                "companyId": {
+                    "type": "integer"
+                },
+                "duplicateLogs": {
+                    "type": "integer"
+                },
+                "errorMessage": {
+                    "type": "string"
+                },
+                "failedLogs": {
+                    "type": "integer"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "logFileId": {
+                    "type": "string"
+                },
+                "machineId": {
+                    "type": "string"
+                },
+                "newLogs": {
+                    "type": "integer"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "syncEndedAt": {
+                    "type": "string"
+                },
+                "syncStartedAt": {
+                    "type": "string"
+                },
+                "totalLogs": {
+                    "type": "integer"
+                },
+                "triggerType": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_enterprise-erp_punchdata_internal_models.PunchImportBatch": {
+            "type": "object",
+            "properties": {
+                "companyId": {
+                    "type": "integer"
+                },
+                "contentType": {
+                    "type": "string"
+                },
+                "duplicateRows": {
+                    "type": "integer"
+                },
+                "errorMessage": {
+                    "type": "string"
+                },
+                "fileName": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "insertedRows": {
+                    "type": "integer"
+                },
+                "invalidRows": {
+                    "type": "integer"
+                },
+                "processedAt": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "totalRows": {
+                    "type": "integer"
+                },
+                "uploadedAt": {
+                    "type": "string"
+                },
+                "uploadedBy": {
+                    "type": "string"
+                },
+                "validRows": {
+                    "type": "integer"
+                }
+            }
+        },
+        "github_com_enterprise-erp_punchdata_internal_models.PunchImportError": {
+            "type": "object",
+            "properties": {
+                "companyId": {
+                    "type": "integer"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "errorMessage": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "importBatchId": {
+                    "type": "string"
+                },
+                "rawRow": {
+                    "type": "string"
+                },
+                "rowNumber": {
+                    "type": "integer"
+                }
+            }
+        },
+        "github_com_enterprise-erp_punchdata_internal_models.PunchLogFile": {
+            "type": "object",
+            "properties": {
+                "companyId": {
+                    "type": "integer"
+                },
+                "contentType": {
+                    "type": "string"
+                },
+                "deviceId": {
+                    "type": "string"
+                },
+                "errorMessage": {
+                    "type": "string"
+                },
+                "fileName": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "importBatchId": {
+                    "type": "string"
+                },
+                "processedAt": {
+                    "type": "string"
+                },
+                "rowCount": {
+                    "type": "integer"
+                },
+                "sizeBytes": {
+                    "type": "integer"
+                },
+                "sourceType": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "uploadedAt": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_enterprise-erp_punchdata_internal_models.PunchMachine": {
+            "type": "object",
+            "properties": {
+                "companyId": {
+                    "type": "integer"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "deviceCode": {
+                    "type": "string"
+                },
+                "deviceName": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "ipAddress": {
+                    "type": "string"
+                },
+                "isActive": {
+                    "type": "boolean"
+                },
+                "lastConnectedAt": {
+                    "type": "string"
+                },
+                "lastConnectionStatus": {
+                    "type": "string"
+                },
+                "lastError": {
+                    "type": "string"
+                },
+                "lastSyncRecordCount": {
+                    "type": "integer"
+                },
+                "lastSyncedAt": {
+                    "type": "string"
+                },
+                "machineNo": {
+                    "type": "integer"
+                },
+                "password": {
+                    "type": "integer"
+                },
+                "port": {
+                    "type": "integer"
+                },
+                "productName": {
+                    "type": "string"
+                },
+                "serialNumber": {
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "type": "string"
+                },
+                "useTcp": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "github_com_enterprise-erp_punchdata_internal_models.PunchRecord": {
+            "type": "object",
+            "properties": {
+                "companyId": {
+                    "type": "integer"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "deviceId": {
+                    "type": "string"
+                },
+                "direction": {
+                    "type": "string"
+                },
+                "employeeCode": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "logFileId": {
+                    "type": "string"
+                },
+                "punchTime": {
+                    "type": "string"
+                },
+                "source": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_enterprise-erp_punchdata_internal_models.RemoteCollectHistory": {
+            "type": "object",
+            "properties": {
+                "companyId": {
+                    "type": "integer"
+                },
+                "completedAt": {
+                    "type": "string"
+                },
+                "duplicates": {
+                    "type": "integer"
+                },
+                "errorMessage": {
+                    "type": "string"
+                },
+                "fromTime": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "inserted": {
+                    "type": "integer"
+                },
+                "logFileId": {
+                    "type": "string"
+                },
+                "remoteRows": {
+                    "type": "integer"
+                },
+                "startedAt": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "toTime": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_enterprise-erp_punchdata_internal_processor.BatchPayload": {
+            "type": "object",
+            "properties": {
+                "companyId": {
+                    "type": "integer"
+                },
+                "deviceId": {
+                    "type": "string"
+                },
+                "records": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_processor.RawPunch"
+                    }
+                },
+                "source": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_enterprise-erp_punchdata_internal_processor.RawPunch": {
+            "type": "object",
+            "properties": {
+                "companyId": {
+                    "type": "integer"
+                },
+                "deviceId": {
+                    "type": "string"
+                },
+                "direction": {
+                    "type": "string"
+                },
+                "employeeCode": {
+                    "type": "string"
+                },
+                "punchTime": {
+                    "type": "string"
+                },
+                "source": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_enterprise-erp_punchdata_internal_processor.Result": {
+            "type": "object",
+            "properties": {
+                "duplicates": {
+                    "type": "integer"
+                },
+                "errorMessage": {
+                    "type": "string"
+                },
+                "failedLogs": {
+                    "type": "integer"
+                },
+                "inserted": {
+                    "type": "integer"
+                },
+                "logFileId": {
+                    "type": "string"
+                },
+                "processedAt": {
+                    "type": "string"
+                },
+                "rowCount": {
+                    "type": "integer"
+                },
+                "skipped": {
+                    "type": "integer"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "warnings": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "github_com_enterprise-erp_punchdata_internal_response.ApiError": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any": {
+            "type": "object",
+            "properties": {
+                "data": {},
+                "errors": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiError"
+                    }
+                },
+                "success": {
+                    "type": "boolean"
+                },
+                "traceId": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_enterprise-erp_punchdata_internal_response.ApiResponse-array_github_com_enterprise-erp_punchdata_internal_models_PunchMachine": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_models.PunchMachine"
+                    }
+                },
+                "errors": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiError"
+                    }
+                },
+                "success": {
+                    "type": "boolean"
+                },
+                "traceId": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_enterprise-erp_punchdata_internal_response.ApiResponse-array_github_com_enterprise-erp_punchdata_internal_processor_Result": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_processor.Result"
+                    }
+                },
+                "errors": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiError"
+                    }
+                },
+                "success": {
+                    "type": "boolean"
+                },
+                "traceId": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_collector_RemoteCollectResult": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_collector.RemoteCollectResult"
+                },
+                "errors": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiError"
+                    }
+                },
+                "success": {
+                    "type": "boolean"
+                },
+                "traceId": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_devices_zkteco_ConnectionResult": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_devices_zkteco.ConnectionResult"
+                },
+                "errors": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiError"
+                    }
+                },
+                "success": {
+                    "type": "boolean"
+                },
+                "traceId": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_models_PunchLogFile": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_models.PunchLogFile"
+                },
+                "errors": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiError"
+                    }
+                },
+                "success": {
+                    "type": "boolean"
+                },
+                "traceId": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_models_PunchMachine": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_models.PunchMachine"
+                },
+                "errors": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiError"
+                    }
+                },
+                "success": {
+                    "type": "boolean"
+                },
+                "traceId": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_processor_Result": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_processor.Result"
+                },
+                "errors": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiError"
+                    }
+                },
+                "success": {
+                    "type": "boolean"
+                },
+                "traceId": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_response_PagedResult-github_com_enterprise-erp_punchdata_internal_models_DeviceSyncHistory": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.PagedResult-github_com_enterprise-erp_punchdata_internal_models_DeviceSyncHistory"
+                },
+                "errors": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiError"
+                    }
+                },
+                "success": {
+                    "type": "boolean"
+                },
+                "traceId": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_response_PagedResult-github_com_enterprise-erp_punchdata_internal_models_PunchImportBatch": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.PagedResult-github_com_enterprise-erp_punchdata_internal_models_PunchImportBatch"
+                },
+                "errors": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiError"
+                    }
+                },
+                "success": {
+                    "type": "boolean"
+                },
+                "traceId": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_response_PagedResult-github_com_enterprise-erp_punchdata_internal_models_PunchImportError": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.PagedResult-github_com_enterprise-erp_punchdata_internal_models_PunchImportError"
+                },
+                "errors": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiError"
+                    }
+                },
+                "success": {
+                    "type": "boolean"
+                },
+                "traceId": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_response_PagedResult-github_com_enterprise-erp_punchdata_internal_models_PunchLogFile": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.PagedResult-github_com_enterprise-erp_punchdata_internal_models_PunchLogFile"
+                },
+                "errors": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiError"
+                    }
+                },
+                "success": {
+                    "type": "boolean"
+                },
+                "traceId": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_response_PagedResult-github_com_enterprise-erp_punchdata_internal_models_PunchMachine": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.PagedResult-github_com_enterprise-erp_punchdata_internal_models_PunchMachine"
+                },
+                "errors": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiError"
+                    }
+                },
+                "success": {
+                    "type": "boolean"
+                },
+                "traceId": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_response_PagedResult-github_com_enterprise-erp_punchdata_internal_models_PunchRecord": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.PagedResult-github_com_enterprise-erp_punchdata_internal_models_PunchRecord"
+                },
+                "errors": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiError"
+                    }
+                },
+                "success": {
+                    "type": "boolean"
+                },
+                "traceId": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_response_PagedResult-github_com_enterprise-erp_punchdata_internal_models_RemoteCollectHistory": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.PagedResult-github_com_enterprise-erp_punchdata_internal_models_RemoteCollectHistory"
+                },
+                "errors": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiError"
+                    }
+                },
+                "success": {
+                    "type": "boolean"
+                },
+                "traceId": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_sync_Result": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_sync.Result"
+                },
+                "errors": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiError"
+                    }
+                },
+                "success": {
+                    "type": "boolean"
+                },
+                "traceId": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_enterprise-erp_punchdata_internal_response.ApiResponse-internal_handlers_manualPunchResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/internal_handlers.manualPunchResponse"
+                },
+                "errors": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiError"
+                    }
+                },
+                "success": {
+                    "type": "boolean"
+                },
+                "traceId": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_enterprise-erp_punchdata_internal_response.ApiResponse-internal_handlers_remoteCollectPreviewResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/internal_handlers.remoteCollectPreviewResponse"
+                },
+                "errors": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiError"
+                    }
+                },
+                "success": {
+                    "type": "boolean"
+                },
+                "traceId": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_enterprise-erp_punchdata_internal_response.PagedResult-github_com_enterprise-erp_punchdata_internal_models_DeviceSyncHistory": {
+            "type": "object",
+            "properties": {
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_models.DeviceSyncHistory"
+                    }
+                },
+                "page": {
+                    "type": "integer"
+                },
+                "pageSize": {
+                    "type": "integer"
+                },
+                "totalCount": {
+                    "type": "integer"
+                }
+            }
+        },
+        "github_com_enterprise-erp_punchdata_internal_response.PagedResult-github_com_enterprise-erp_punchdata_internal_models_PunchImportBatch": {
+            "type": "object",
+            "properties": {
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_models.PunchImportBatch"
+                    }
+                },
+                "page": {
+                    "type": "integer"
+                },
+                "pageSize": {
+                    "type": "integer"
+                },
+                "totalCount": {
+                    "type": "integer"
+                }
+            }
+        },
+        "github_com_enterprise-erp_punchdata_internal_response.PagedResult-github_com_enterprise-erp_punchdata_internal_models_PunchImportError": {
+            "type": "object",
+            "properties": {
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_models.PunchImportError"
+                    }
+                },
+                "page": {
+                    "type": "integer"
+                },
+                "pageSize": {
+                    "type": "integer"
+                },
+                "totalCount": {
+                    "type": "integer"
+                }
+            }
+        },
+        "github_com_enterprise-erp_punchdata_internal_response.PagedResult-github_com_enterprise-erp_punchdata_internal_models_PunchLogFile": {
+            "type": "object",
+            "properties": {
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_models.PunchLogFile"
+                    }
+                },
+                "page": {
+                    "type": "integer"
+                },
+                "pageSize": {
+                    "type": "integer"
+                },
+                "totalCount": {
+                    "type": "integer"
+                }
+            }
+        },
+        "github_com_enterprise-erp_punchdata_internal_response.PagedResult-github_com_enterprise-erp_punchdata_internal_models_PunchMachine": {
+            "type": "object",
+            "properties": {
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_models.PunchMachine"
+                    }
+                },
+                "page": {
+                    "type": "integer"
+                },
+                "pageSize": {
+                    "type": "integer"
+                },
+                "totalCount": {
+                    "type": "integer"
+                }
+            }
+        },
+        "github_com_enterprise-erp_punchdata_internal_response.PagedResult-github_com_enterprise-erp_punchdata_internal_models_PunchRecord": {
+            "type": "object",
+            "properties": {
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_models.PunchRecord"
+                    }
+                },
+                "page": {
+                    "type": "integer"
+                },
+                "pageSize": {
+                    "type": "integer"
+                },
+                "totalCount": {
+                    "type": "integer"
+                }
+            }
+        },
+        "github_com_enterprise-erp_punchdata_internal_response.PagedResult-github_com_enterprise-erp_punchdata_internal_models_RemoteCollectHistory": {
+            "type": "object",
+            "properties": {
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_models.RemoteCollectHistory"
+                    }
+                },
+                "page": {
+                    "type": "integer"
+                },
+                "pageSize": {
+                    "type": "integer"
+                },
+                "totalCount": {
+                    "type": "integer"
+                }
+            }
+        },
+        "github_com_enterprise-erp_punchdata_internal_sync.Result": {
+            "type": "object",
+            "properties": {
+                "connection": {
+                    "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_devices_zkteco.ConnectionResult"
+                },
+                "history": {
+                    "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_models.DeviceSyncHistory"
+                },
+                "logFile": {
+                    "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_models.PunchLogFile"
+                },
+                "process": {
+                    "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_processor.Result"
+                }
+            }
+        },
+        "internal_handlers.BulkMachineRequest": {
+            "type": "object",
+            "properties": {
+                "machines": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/internal_handlers.CreateMachineRequest"
+                    }
+                }
+            }
+        },
+        "internal_handlers.CreateMachineRequest": {
+            "type": "object",
+            "properties": {
+                "companyId": {
+                    "type": "integer"
+                },
+                "deviceCode": {
+                    "type": "string"
+                },
+                "deviceName": {
+                    "type": "string"
+                },
+                "ipAddress": {
+                    "type": "string"
+                },
+                "isActive": {
+                    "type": "boolean"
+                },
+                "machineNo": {
+                    "type": "integer"
+                },
+                "password": {
+                    "type": "integer"
+                },
+                "port": {
+                    "type": "integer"
+                },
+                "productName": {
+                    "type": "string"
+                },
+                "serialNumber": {
+                    "type": "string"
+                },
+                "useTcp": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "internal_handlers.HealthResponse": {
+            "type": "object",
+            "properties": {
+                "db": {
+                    "type": "string"
+                },
+                "remoteZkteco": {
+                    "type": "string"
+                },
+                "service": {
+                    "type": "string",
+                    "example": "PunchDataService"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "Healthy"
+                }
+            }
+        },
+        "internal_handlers.manualPunchRequest": {
+            "type": "object",
+            "properties": {
+                "companyId": {
+                    "type": "integer"
+                },
+                "deviceId": {
+                    "type": "string"
+                },
+                "direction": {
+                    "type": "string"
+                },
+                "employeeCode": {
+                    "type": "string"
+                },
+                "punchTime": {
+                    "type": "string"
+                },
+                "source": {
+                    "type": "string"
+                }
+            }
+        },
+        "internal_handlers.manualPunchResponse": {
+            "type": "object",
+            "properties": {
+                "duplicate": {
+                    "type": "boolean"
+                },
+                "record": {
+                    "$ref": "#/definitions/github_com_enterprise-erp_punchdata_internal_models.PunchRecord"
+                }
+            }
+        },
+        "internal_handlers.remoteCollectBody": {
+            "type": "object",
+            "properties": {
+                "batchSize": {
+                    "type": "integer"
+                },
+                "companyId": {
+                    "type": "integer"
+                },
+                "from": {
+                    "type": "string"
+                },
+                "to": {
+                    "type": "string"
+                },
+                "useWatermark": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "internal_handlers.remoteCollectPreviewResponse": {
+            "type": "object",
+            "properties": {
+                "from": {
+                    "type": "string"
+                },
+                "readOnly": {
+                    "type": "boolean"
+                },
+                "remoteRows": {
+                    "type": "integer"
+                },
+                "to": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "securityDefinitions": {
+        "BearerAuth": {
+            "description": "JWT issued by AuthService. Send as: `Bearer \u003ctoken\u003e`. Pass companyId in body or query when needed.",
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    },
+    "tags": [
+        {
+            "description": "Liveness and database connectivity",
+            "name": "health"
+        },
+        {
+            "description": "Upload, batch ingest, and process raw punch payloads",
+            "name": "logs"
+        },
+        {
+            "description": "Query and manually add normalised punch records",
+            "name": "punches"
+        },
+        {
+            "description": "ZKTeco device registry, connectivity test, and LAN sync",
+            "name": "machines"
+        },
+        {
+            "description": "CSV/Excel import batch history and row errors",
+            "name": "imports"
+        },
+        {
+            "description": "Read-only collect from public ZKTeco SQL (CHECKINOUT) into PunchRecords",
+            "name": "remote-collect"
+        }
+    ]
+}

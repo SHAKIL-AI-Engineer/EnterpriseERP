@@ -1,0 +1,9 @@
+<Solution>
+  <Project Path="../../BuildingBlocks/Erp.BuildingBlocks.Hosting/Erp.BuildingBlocks.Hosting.csproj" />
+  <Project Path="FinishingService.API/FinishingService.API.csproj" />
+  <Project Path="FinishingService.Application/FinishingService.Application.csproj" />
+  <Project Path="FinishingService.Contracts/FinishingService.Contracts.csproj" />
+  <Project Path="FinishingService.Domain/FinishingService.Domain.csproj" />
+  <Project Path="FinishingService.Infrastructure/FinishingService.Infrastructure.csproj" />
+  <Project Path="FinishingService.Tests/FinishingService.Tests.csproj" />
+</Solution>

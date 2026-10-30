@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/QualityService/">
+    <Project Path="QualityService.API/QualityService.API.csproj" />
+    <Project Path="QualityService.Application/QualityService.Application.csproj" />
+    <Project Path="QualityService.Contracts/QualityService.Contracts.csproj" />
+    <Project Path="QualityService.Domain/QualityService.Domain.csproj" />
+    <Project Path="QualityService.Infrastructure/QualityService.Infrastructure.csproj" />
+    <Project Path="QualityService.Tests/QualityService.Tests.csproj" />
+  </Folder>
+</Solution>

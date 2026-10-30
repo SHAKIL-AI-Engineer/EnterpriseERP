@@ -1,0 +1,18 @@
+namespace AccountsService.Contracts;
+
+public sealed record ChartOfAccountDto(Guid Id, Guid CompanyId, string AccountCode, string AccountName, Guid? ParentAccountId, string AccountType, string NormalBalance, bool IsControlAccount, bool IsCashAccount, bool IsBankAccount, bool IsActive);
+public sealed record FiscalYearDto(Guid Id, Guid CompanyId, string YearName, DateOnly StartDate, DateOnly EndDate, bool IsClosed);
+public sealed record AccountingPeriodDto(Guid Id, Guid CompanyId, Guid FiscalYearId, string PeriodName, DateOnly StartDate, DateOnly EndDate, bool IsClosed);
+public sealed record ExpenseCategoryDto(Guid Id, Guid CompanyId, string CategoryCode, string CategoryName, Guid ExpenseAccountId);
+public sealed record VoucherLineDto(Guid Id, Guid CompanyId, Guid VoucherId, Guid AccountId, Guid? CostCenterId, decimal DebitAmount, decimal CreditAmount, string? Description);
+public sealed record VoucherDto(Guid Id, Guid CompanyId, string VoucherNo, DateOnly VoucherDate, string VoucherType, string? ReferenceNo, string? Narration, decimal TotalDebit, decimal TotalCredit, string Status, IReadOnlyList<VoucherLineDto> Lines);
+public sealed record GeneralLedgerEntryDto(Guid Id, Guid CompanyId, Guid VoucherId, Guid VoucherLineId, Guid AccountId, Guid? CostCenterId, DateOnly TransactionDate, decimal DebitAmount, decimal CreditAmount, decimal BalanceAmount, string? ReferenceNo);
+public sealed record CashReceiptDto(Guid Id, Guid CompanyId, string ReceiptNo, DateOnly ReceiptDate, string ReceivedFromType, Guid? ReceivedFromId, Guid CashOrBankAccountId, decimal Amount, string PaymentMethod, string? ReferenceNo, string? Purpose, string Status, Guid? VoucherId);
+public sealed record MoneyReceiptDto(Guid Id, Guid CompanyId, string MoneyReceiptNo, DateOnly ReceiptDate, string ReceivedFrom, string ReceivedFromType, decimal Amount, string PaymentMethod, Guid CashOrBankAccountId, string? Description, Guid? VoucherId, string Status);
+public sealed record DailyExpenseDto(Guid Id, Guid CompanyId, string ExpenseNo, DateOnly ExpenseDate, Guid ExpenseCategoryId, Guid PaidFromAccountId, decimal Amount, string PaymentMethod, string? PaidTo, string? Description, string Status, Guid? VoucherId);
+public sealed record MoneyRequestDto(Guid Id, Guid CompanyId, string RequestNo, DateOnly RequestDate, Guid RequestedBy, Guid? DepartmentId, string Purpose, decimal RequestedAmount, decimal ApprovedAmount, decimal PaidAmount, string Status, Guid? VoucherId);
+public sealed record AdvancePaymentDto(Guid Id, Guid CompanyId, string AdvanceNo, DateOnly AdvanceDate, string AdvanceType, string PaidToType, Guid? PaidToId, string? PaidToName, Guid PaidFromAccountId, decimal Amount, string? Purpose, string Status, Guid? VoucherId);
+public sealed record AdvanceSalaryPaymentDto(Guid Id, Guid CompanyId, Guid EmployeeId, string AdvanceSalaryNo, DateOnly AdvanceDate, decimal Amount, int DeductionStartYear, int DeductionStartMonth, decimal InstallmentAmount, Guid PaidFromAccountId, string Status, Guid? VoucherId);
+public sealed record CompanyMoneyTransferDto(Guid Id, Guid CompanyId, string TransferNo, Guid FromCompanyId, Guid ToCompanyId, Guid FromAccountId, Guid ToAccountId, DateOnly TransferDate, decimal Amount, string TransferMethod, string? ReferenceNo, string? Purpose, string Status, Guid? FromCompanyVoucherId, Guid? ToCompanyVoucherId);
+public sealed record FinancialReportLineDto(string Code, string Name, decimal Debit, decimal Credit, decimal Balance);
+public sealed record FinancialStatementDto(Guid CompanyId, DateOnly FromDate, DateOnly ToDate, IReadOnlyList<FinancialReportLineDto> Lines, decimal TotalDebit, decimal TotalCredit, decimal NetAmount);

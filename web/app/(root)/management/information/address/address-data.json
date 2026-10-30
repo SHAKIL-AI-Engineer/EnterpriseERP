@@ -1,0 +1,130 @@
+[
+    {
+        "id": 1,
+        "division": "Dhaka",
+        "district": "Dhaka",
+        "thana": "Gulshan",
+        "postOffice": "Gulshan Model Town",
+        "postalCode": "1212"
+    },
+    {
+        "id": 2,
+        "division": "Dhaka",
+        "district": "Dhaka",
+        "thana": "Dhanmondi",
+        "postOffice": "Dhanmondi",
+        "postalCode": "1209"
+    },
+    {
+        "id": 3,
+        "division": "Chittagong",
+        "district": "Chittagong",
+        "thana": "Pahartali",
+        "postOffice": "Pahartali",
+        "postalCode": "4202"
+    },
+    {
+        "id": 4,
+        "division": "Rajshahi",
+        "district": "Rajshahi",
+        "thana": "Boalia",
+        "postOffice": "Ghoramara",
+        "postalCode": "6100"
+    },
+    {
+        "id": 5,
+        "division": "Khulna",
+        "district": "Khulna",
+        "thana": "Khulna Sadar",
+        "postOffice": "Khulna GPO",
+        "postalCode": "9000"
+    },
+    {
+        "id": 6,
+        "division": "Barisal",
+        "district": "Barisal",
+        "thana": "Kotwali",
+        "postOffice": "Barisal Sadar",
+        "postalCode": "8200"
+    },
+    {
+        "id": 7,
+        "division": "Sylhet",
+        "district": "Sylhet",
+        "thana": "Kotwali",
+        "postOffice": "Sylhet Sadar",
+        "postalCode": "3100"
+    },
+    {
+        "id": 8,
+        "division": "Rangpur",
+        "district": "Rangpur",
+        "thana": "Rangpur Sadar",
+        "postOffice": "Rangpur",
+        "postalCode": "5400"
+    },
+    {
+        "id": 9,
+        "division": "Mymensingh",
+        "district": "Mymensingh",
+        "thana": "Mymensingh Sadar",
+        "postOffice": "Mymensingh",
+        "postalCode": "2200"
+    },
+    {
+        "id": 10,
+        "division": "Dhaka",
+        "district": "Gazipur",
+        "thana": "Gazipur Sadar",
+        "postOffice": "Gazipur",
+        "postalCode": "1700"
+    },
+    {
+        "id": 11,
+        "division": "Dhaka",
+        "district": "Narayanganj",
+        "thana": "Narayanganj Sadar",
+        "postOffice": "Narayanganj",
+        "postalCode": "1400"
+    },
+    {
+        "id": 12,
+        "division": "Chattogram",
+        "district": "Cox's Bazar",
+        "thana": "Cox's Bazar Sadar",
+        "postOffice": "Cox's Bazar",
+        "postalCode": "4700"
+    },
+    {
+        "id": 13,
+        "division": "Khulna",
+        "district": "Jessore",
+        "thana": "Jessore Sadar",
+        "postOffice": "Jessore",
+        "postalCode": "7400"
+    },
+    {
+        "id": 14,
+        "division": "Rajshahi",
+        "district": "Bogra",
+        "thana": "Bogra Sadar",
+        "postOffice": "Bogra",
+        "postalCode": "5800"
+    },
+    {
+        "id": 15,
+        "division": "Sylhet",
+        "district": "Moulvibazar",
+        "thana": "Moulvibazar Sadar",
+        "postOffice": "Moulvibazar",
+        "postalCode": "3200"
+    },
+    {
+        "id": 16,
+        "division": "Dhaka",
+        "district": "Tangail",
+        "thana": "Tangail Sadar",
+        "postOffice": "Tangail",
+        "postalCode": "1900"
+    }
+]

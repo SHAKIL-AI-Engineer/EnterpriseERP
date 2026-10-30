@@ -1,0 +1,16 @@
+<Solution>
+  <Project Path="Erp.Accounts.Shell/Erp.Accounts.Shell.csproj" />
+  <Project Path="Erp.Attendance.Shell/Erp.Attendance.Shell.csproj" />
+  <Project Path="Erp.Audit.Shell/Erp.Audit.Shell.csproj" />
+  <Project Path="Erp.Bills.Shell/Erp.Bills.Shell.csproj" />
+  <Project Path="Erp.Cutting.Shell/Erp.Cutting.Shell.csproj" />
+  <Project Path="Erp.FileStorage.Shell/Erp.FileStorage.Shell.csproj" />
+  <Project Path="Erp.Inventory.Shell/Erp.Inventory.Shell.csproj" />
+  <Project Path="Erp.Leave.Shell/Erp.Leave.Shell.csproj" />
+  <Project Path="Erp.Merchandising.Shell/Erp.Merchandising.Shell.csproj" />
+  <Project Path="Erp.Notification.Shell/Erp.Notification.Shell.csproj" />
+  <Project Path="Erp.Payroll.Shell/Erp.Payroll.Shell.csproj" />
+  <Project Path="Erp.Production.Shell/Erp.Production.Shell.csproj" />
+  <Project Path="Erp.Report.Shell/Erp.Report.Shell.csproj" />
+  <Project Path="Erp.Shift.Shell/Erp.Shift.Shell.csproj" />
+</Solution>

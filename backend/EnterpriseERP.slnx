@@ -1,0 +1,176 @@
+<Solution>
+  <Folder Name="/Platform/">
+    <Project Path="Platform.Host/EnterpriseERP.Platform.Host.csproj" />
+  </Folder>
+  <Folder Name="/ApiGateway/">
+    <Project Path="ApiGateway/Gateway.Api/Gateway.Api.csproj" />
+  </Folder>
+  <Folder Name="/BuildingBlocks/">
+    <Project Path="BuildingBlocks/Erp.BuildingBlocks.CommonResponses/Erp.BuildingBlocks.CommonResponses.csproj" />
+    <Project Path="BuildingBlocks/Erp.BuildingBlocks.Contracts/Erp.BuildingBlocks.Contracts.csproj" />
+    <Project Path="BuildingBlocks/Erp.BuildingBlocks.EventBus/Erp.BuildingBlocks.EventBus.csproj" />
+    <Project Path="BuildingBlocks/Erp.BuildingBlocks.Hosting/Erp.BuildingBlocks.Hosting.csproj" />
+    <Project Path="BuildingBlocks/Erp.BuildingBlocks.ImageProcessing/Erp.BuildingBlocks.ImageProcessing.csproj" />
+    <Project Path="BuildingBlocks/Erp.BuildingBlocks.SharedKernel/Erp.BuildingBlocks.SharedKernel.csproj" />
+    <Project Path="BuildingBlocks/Erp.BuildingBlocks.ReportExport/Erp.BuildingBlocks.ReportExport.csproj" />
+    <Project Path="BuildingBlocks/CommonSecurity/Erp.BuildingBlocks.CommonSecurity.csproj" />
+  </Folder>
+  <Folder Name="/Services/" />
+  <Folder Name="/Services/CompanyService/">
+    <Project Path="Services/CompanyService/CompanyService.Api/CompanyService.Api.csproj" />
+    <Project Path="Services/CompanyService/CompanyService.Application/CompanyService.Application.csproj" />
+    <Project Path="Services/CompanyService/CompanyService.Domain/CompanyService.Domain.csproj" />
+    <Project Path="Services/CompanyService/CompanyService.Infrastructure/CompanyService.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/Services/CuttingService/">
+    <Project Path="Services/CuttingService/CuttingService.API/CuttingService.API.csproj" />
+    <Project Path="Services/CuttingService/CuttingService.Application/CuttingService.Application.csproj" />
+    <Project Path="Services/CuttingService/CuttingService.Contracts/CuttingService.Contracts.csproj" />
+    <Project Path="Services/CuttingService/CuttingService.Domain/CuttingService.Domain.csproj" />
+    <Project Path="Services/CuttingService/CuttingService.Infrastructure/CuttingService.Infrastructure.csproj" />
+    <Project Path="Services/CuttingService/CuttingService.Tests/CuttingService.Tests.csproj" />
+  </Folder>
+  <Folder Name="/Services/FinishingService/">
+    <Project Path="Services/FinishingService/FinishingService.API/FinishingService.API.csproj" />
+    <Project Path="Services/FinishingService/FinishingService.Application/FinishingService.Application.csproj" />
+    <Project Path="Services/FinishingService/FinishingService.Contracts/FinishingService.Contracts.csproj" />
+    <Project Path="Services/FinishingService/FinishingService.Domain/FinishingService.Domain.csproj" />
+    <Project Path="Services/FinishingService/FinishingService.Infrastructure/FinishingService.Infrastructure.csproj" />
+    <Project Path="Services/FinishingService/FinishingService.Tests/FinishingService.Tests.csproj" />
+  </Folder>
+  <Folder Name="/Services/QualityService/">
+    <Project Path="Services/QualityService/QualityService.API/QualityService.API.csproj" />
+    <Project Path="Services/QualityService/QualityService.Application/QualityService.Application.csproj" />
+    <Project Path="Services/QualityService/QualityService.Contracts/QualityService.Contracts.csproj" />
+    <Project Path="Services/QualityService/QualityService.Domain/QualityService.Domain.csproj" />
+    <Project Path="Services/QualityService/QualityService.Infrastructure/QualityService.Infrastructure.csproj" />
+    <Project Path="Services/QualityService/QualityService.Tests/QualityService.Tests.csproj" />
+  </Folder>
+  <Folder Name="/Services/SecurityService/">
+    <Project Path="Services/SecurityService/SecurityService.API/SecurityService.API.csproj" />
+    <Project Path="Services/SecurityService/SecurityService.Application/SecurityService.Application.csproj" />
+    <Project Path="Services/SecurityService/SecurityService.Contracts/SecurityService.Contracts.csproj" />
+    <Project Path="Services/SecurityService/SecurityService.Domain/SecurityService.Domain.csproj" />
+    <Project Path="Services/SecurityService/SecurityService.Infrastructure/SecurityService.Infrastructure.csproj" />
+    <Project Path="Services/SecurityService/SecurityService.Tests/SecurityService.Tests.csproj" />
+  </Folder>
+  <Folder Name="/Services/HRService/">
+    <Project Path="Services/HRService/HRService.Api/HRService.Api.csproj" />
+    <Project Path="Services/HRService/HRService.Application/HRService.Application.csproj" />
+    <Project Path="Services/HRService/HRService.Domain/HRService.Domain.csproj" />
+    <Project Path="Services/HRService/HRService.Infrastructure/HRService.Infrastructure.csproj" />
+    <Project Path="Services/HRService/HRService.Tests/HRService.Tests.csproj" />
+  </Folder>
+  <Folder Name="/Services/ShipmentService/">
+    <Project Path="Services/ShipmentService/ShipmentService.API/ShipmentService.API.csproj" />
+    <Project Path="Services/ShipmentService/ShipmentService.Application/ShipmentService.Application.csproj" />
+    <Project Path="Services/ShipmentService/ShipmentService.Contracts/ShipmentService.Contracts.csproj" />
+    <Project Path="Services/ShipmentService/ShipmentService.Domain/ShipmentService.Domain.csproj" />
+    <Project Path="Services/ShipmentService/ShipmentService.Infrastructure/ShipmentService.Infrastructure.csproj" />
+    <Project Path="Services/ShipmentService/ShipmentService.Tests/ShipmentService.Tests.csproj" />
+  </Folder>
+  <Folder Name="/Services/SewingService/">
+    <Project Path="Services/SewingService/SewingService.API/SewingService.API.csproj" />
+    <Project Path="Services/SewingService/SewingService.Application/SewingService.Application.csproj" />
+    <Project Path="Services/SewingService/SewingService.Contracts/SewingService.Contracts.csproj" />
+    <Project Path="Services/SewingService/SewingService.Domain/SewingService.Domain.csproj" />
+    <Project Path="Services/SewingService/SewingService.Infrastructure/SewingService.Infrastructure.csproj" />
+    <Project Path="Services/SewingService/SewingService.Tests/SewingService.Tests.csproj" />
+  </Folder>
+  <Folder Name="/Services/ProductionPlanningService/">
+    <Project Path="Services/ProductionPlanningService/ProductionPlanningService.API/ProductionPlanningService.API.csproj" />
+    <Project Path="Services/ProductionPlanningService/ProductionPlanningService.Application/ProductionPlanningService.Application.csproj" />
+    <Project Path="Services/ProductionPlanningService/ProductionPlanningService.Contracts/ProductionPlanningService.Contracts.csproj" />
+    <Project Path="Services/ProductionPlanningService/ProductionPlanningService.Domain/ProductionPlanningService.Domain.csproj" />
+    <Project Path="Services/ProductionPlanningService/ProductionPlanningService.Infrastructure/ProductionPlanningService.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/Services/MerchandisingService/">
+    <Project Path="Services/MerchandisingService/MerchandisingService.API/MerchandisingService.API.csproj" />
+    <Project Path="Services/MerchandisingService/MerchandisingService.Application/MerchandisingService.Application.csproj" />
+    <Project Path="Services/MerchandisingService/MerchandisingService.Contracts/MerchandisingService.Contracts.csproj" />
+    <Project Path="Services/MerchandisingService/MerchandisingService.Domain/MerchandisingService.Domain.csproj" />
+    <Project Path="Services/MerchandisingService/MerchandisingService.Infrastructure/MerchandisingService.Infrastructure.csproj" />
+    <Project Path="Services/MerchandisingService/MerchandisingService.Tests/MerchandisingService.Tests.csproj" />
+  </Folder>
+  <Folder Name="/Services/ProcurementService/">
+    <Project Path="Services/ProcurementService/ProcurementService.API/ProcurementService.API.csproj" />
+    <Project Path="Services/ProcurementService/ProcurementService.Application/ProcurementService.Application.csproj" />
+    <Project Path="Services/ProcurementService/ProcurementService.Contracts/ProcurementService.Contracts.csproj" />
+    <Project Path="Services/ProcurementService/ProcurementService.Domain/ProcurementService.Domain.csproj" />
+    <Project Path="Services/ProcurementService/ProcurementService.Infrastructure/ProcurementService.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/Services/InventoryService/">
+    <Project Path="Services/InventoryService/InventoryService.API/InventoryService.API.csproj" />
+    <Project Path="Services/InventoryService/InventoryService.Application/InventoryService.Application.csproj" />
+    <Project Path="Services/InventoryService/InventoryService.Contracts/InventoryService.Contracts.csproj" />
+    <Project Path="Services/InventoryService/InventoryService.Domain/InventoryService.Domain.csproj" />
+    <Project Path="Services/InventoryService/InventoryService.Infrastructure/InventoryService.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/Services/StoreService/">
+    <Project Path="Services/StoreService/StoreService.API/StoreService.API.csproj" />
+    <Project Path="Services/StoreService/StoreService.Application/StoreService.Application.csproj" />
+    <Project Path="Services/StoreService/StoreService.Contracts/StoreService.Contracts.csproj" />
+    <Project Path="Services/StoreService/StoreService.Domain/StoreService.Domain.csproj" />
+    <Project Path="Services/StoreService/StoreService.Infrastructure/StoreService.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/Services/MicroserviceShells/">
+    <Project Path="Services/MicroserviceShells/Erp.Shift.Shell/Erp.Shift.Shell.csproj" />
+    <Project Path="Services/MicroserviceShells/Erp.Attendance.Shell/Erp.Attendance.Shell.csproj" />
+    <Project Path="Services/MicroserviceShells/Erp.Leave.Shell/Erp.Leave.Shell.csproj" />
+    <Project Path="Services/MicroserviceShells/Erp.Payroll.Shell/Erp.Payroll.Shell.csproj" />
+    <Project Path="Services/MicroserviceShells/Erp.Accounts.Shell/Erp.Accounts.Shell.csproj" />
+    <Project Path="Services/MicroserviceShells/Erp.Inventory.Shell/Erp.Inventory.Shell.csproj" />
+    <Project Path="Services/MicroserviceShells/Erp.Production.Shell/Erp.Production.Shell.csproj" />
+    <Project Path="Services/MicroserviceShells/Erp.Merchandising.Shell/Erp.Merchandising.Shell.csproj" />
+    <Project Path="Services/MicroserviceShells/Erp.Cutting.Shell/Erp.Cutting.Shell.csproj" />
+    <Project Path="Services/MicroserviceShells/Erp.Bills.Shell/Erp.Bills.Shell.csproj" />
+    <Project Path="Services/MicroserviceShells/Erp.Report.Shell/Erp.Report.Shell.csproj" />
+
+    <Project Path="Services/MicroserviceShells/Erp.Audit.Shell/Erp.Audit.Shell.csproj" />
+    <Project Path="Services/MicroserviceShells/Erp.FileStorage.Shell/Erp.FileStorage.Shell.csproj" />
+  </Folder>
+  <Folder Name="/Services/AccountsService/">
+    <Project Path="Services/AccountsService/AccountsService.API/AccountsService.API.csproj" />
+    <Project Path="Services/AccountsService/AccountsService.Application/AccountsService.Application.csproj" />
+    <Project Path="Services/AccountsService/AccountsService.Contracts/AccountsService.Contracts.csproj" />
+    <Project Path="Services/AccountsService/AccountsService.Domain/AccountsService.Domain.csproj" />
+    <Project Path="Services/AccountsService/AccountsService.Infrastructure/AccountsService.Infrastructure.csproj" />
+    <Project Path="Services/AccountsService/AccountsService.Tests/AccountsService.Tests.csproj" />
+  </Folder>
+  <Folder Name="/Services/AuthService/">
+    <Project Path="Services/AuthService/AuthService.Api/AuthService.Api.csproj" />
+    <Project Path="Services/AuthService/AuthService.Application/AuthService.Application.csproj" />
+    <Project Path="Services/AuthService/AuthService.Contracts/AuthService.Contracts.csproj" />
+    <Project Path="Services/AuthService/AuthService.Infrastructure/AuthService.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/Services/PayrollService/">
+    <Project Path="Services/PayrollService/PayrollService.Api/PayrollService.Api.csproj" />
+    <Project Path="Services/PayrollService/PayrollService.Application/PayrollService.Application.csproj" />
+    <Project Path="Services/PayrollService/PayrollService.Contracts/PayrollService.Contracts.csproj" />
+    <Project Path="Services/PayrollService/PayrollService.Domain/PayrollService.Domain.csproj" />
+    <Project Path="Services/PayrollService/PayrollService.Infrastructure/PayrollService.Infrastructure.csproj" />
+    <Project Path="Services/PayrollService/PayrollService.Tests/PayrollService.Tests.csproj" />
+  </Folder>
+  <Folder Name="/Services/AttendanceService/">
+    <Project Path="Services/AttendanceService/AttendanceService.Api/AttendanceService.Api.csproj" />
+    <Project Path="Services/AttendanceService/AttendanceService.Application/AttendanceService.Application.csproj" />
+    <Project Path="Services/AttendanceService/AttendanceService.Domain/AttendanceService.Domain.csproj" />
+    <Project Path="Services/AttendanceService/AttendanceService.Infrastructure/AttendanceService.Infrastructure.csproj" />
+    <Project Path="Services/AttendanceService/AttendanceService.Tests/AttendanceService.Tests.csproj" />
+  </Folder>
+  <Folder Name="/Services/ShiftService/">
+    <Project Path="Services/ShiftService/ShiftService.Api/ShiftService.Api.csproj" />
+    <Project Path="Services/ShiftService/ShiftService.Application/ShiftService.Application.csproj" />
+    <Project Path="Services/ShiftService/ShiftService.Domain/ShiftService.Domain.csproj" />
+    <Project Path="Services/ShiftService/ShiftService.Infrastructure/ShiftService.Infrastructure.csproj" />
+    <Project Path="Services/ShiftService/ShiftService.Tests/ShiftService.Tests.csproj" />
+  </Folder>
+  <Folder Name="/Services/LeaveService/">
+    <Project Path="Services/LeaveService/LeaveService.Api/LeaveService.Api.csproj" />
+    <Project Path="Services/LeaveService/LeaveService.Application/LeaveService.Application.csproj" />
+    <Project Path="Services/LeaveService/LeaveService.Domain/LeaveService.Domain.csproj" />
+    <Project Path="Services/LeaveService/LeaveService.Infrastructure/LeaveService.Infrastructure.csproj" />
+    <Project Path="Services/LeaveService/LeaveService.Tests/LeaveService.Tests.csproj" />
+  </Folder>
+
+</Solution>

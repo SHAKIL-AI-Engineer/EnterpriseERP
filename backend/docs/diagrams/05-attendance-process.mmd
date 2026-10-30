@@ -1,0 +1,12 @@
+flowchart LR
+    A[Process day API] --> B[Map Company GUID to PunchData CompanyId]
+    B --> C[Load employees from HR]
+    C --> D[Load punches from PunchData]
+    D --> E[For each employee]
+    E --> F[Shift evaluation API]
+    F --> G[Filter punches in punch window]
+    G --> H[AttendanceProcessingService]
+    H --> I[Upsert DailyAttendance]
+    I --> J[Status: Present / Late / Absent / Holiday]
+    J --> K[Approve - IsApproved true]
+    K --> L[Monthly rollup for payroll]

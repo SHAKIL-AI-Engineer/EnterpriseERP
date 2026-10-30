@@ -1,0 +1,33 @@
+# Auth service + SQL Server for local integration testing.
+# Usage (from this folder):
+#   docker compose -f docker-compose.auth.yml up --build
+#
+# SA password must match ConnectionStrings:AuthDb below. Same as local SQL Server (sa / 123580).
+# Note: SQL Server Linux container may reject overly simple passwords; if sql exits on startup, use a
+# longer complex password in both MSSQL_SA_PASSWORD and ConnectionStrings__AuthDb.
+
+services:
+  sql:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "123580"
+    ports:
+      - "1433:1433"
+  auth-api:
+    build:
+      context: .
+      dockerfile: Dockerfile.auth
+    depends_on:
+      - sql
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__AuthDb: "Server=sql,1433;Database=AuthServiceDB;User Id=sa;Password=123580;TrustServerCertificate=True;MultipleActiveResultSets=true"
+      Jwt__Issuer: "AuthService"
+      Jwt__Audience: "Erp.Platform"
+      Jwt__AccessTokenMinutes: "1440"
+      Jwt__RefreshTokenDays: "7"
+      Jwt__SigningKey: "CHANGE_THIS_TO_A_LONG_RANDOM_SECRET_KEY_32+"
+      Auth__AllowSelfRegistration: "true"
+    ports:
+      - "5012:8080"

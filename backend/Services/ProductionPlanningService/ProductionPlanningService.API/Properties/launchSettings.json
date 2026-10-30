@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "ProductionPlanningService.API": {
+      "commandName": "Project",
+      "applicationUrl": "http://127.0.0.1:5043",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

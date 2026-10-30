@@ -1,0 +1,3 @@
+# Entry point: service definitions live in Infrastructure/Docker/docker-compose.platform.yml
+include:
+  - path: Infrastructure/Docker/docker-compose.platform.yml

@@ -1,0 +1,8 @@
+<Solution>
+  <Project Path="PayrollService.Api/PayrollService.Api.csproj" />
+  <Project Path="PayrollService.Application/PayrollService.Application.csproj" />
+  <Project Path="PayrollService.Contracts/PayrollService.Contracts.csproj" />
+  <Project Path="PayrollService.Domain/PayrollService.Domain.csproj" />
+  <Project Path="PayrollService.Infrastructure/PayrollService.Infrastructure.csproj" />
+  <Project Path="PayrollService.Tests/PayrollService.Tests.csproj" />
+</Solution>

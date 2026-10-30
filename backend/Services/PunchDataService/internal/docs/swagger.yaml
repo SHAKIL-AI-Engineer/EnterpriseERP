@@ -1,0 +1,1627 @@
+basePath: /
+definitions:
+  github_com_enterprise-erp_punchdata_internal_collector.RemoteCollectResult:
+    properties:
+      duplicates:
+        type: integer
+      history:
+        $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_models.RemoteCollectHistory'
+      inserted:
+        type: integer
+      logFile:
+        $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_models.PunchLogFile'
+      remoteRows:
+        type: integer
+    type: object
+  github_com_enterprise-erp_punchdata_internal_devices_zkteco.ConnectionResult:
+    properties:
+      checkedAt:
+        type: string
+      connected:
+        type: boolean
+      deviceClock:
+        type: string
+      deviceId:
+        type: string
+      firmware:
+        type: string
+      totalRecords:
+        type: integer
+      totalUsers:
+        type: integer
+    type: object
+  github_com_enterprise-erp_punchdata_internal_models.DeviceSyncHistory:
+    properties:
+      companyId:
+        type: integer
+      duplicateLogs:
+        type: integer
+      errorMessage:
+        type: string
+      failedLogs:
+        type: integer
+      id:
+        type: string
+      logFileId:
+        type: string
+      machineId:
+        type: string
+      newLogs:
+        type: integer
+      status:
+        type: string
+      syncEndedAt:
+        type: string
+      syncStartedAt:
+        type: string
+      totalLogs:
+        type: integer
+      triggerType:
+        type: string
+    type: object
+  github_com_enterprise-erp_punchdata_internal_models.PunchImportBatch:
+    properties:
+      companyId:
+        type: integer
+      contentType:
+        type: string
+      duplicateRows:
+        type: integer
+      errorMessage:
+        type: string
+      fileName:
+        type: string
+      id:
+        type: string
+      insertedRows:
+        type: integer
+      invalidRows:
+        type: integer
+      processedAt:
+        type: string
+      status:
+        type: string
+      totalRows:
+        type: integer
+      uploadedAt:
+        type: string
+      uploadedBy:
+        type: string
+      validRows:
+        type: integer
+    type: object
+  github_com_enterprise-erp_punchdata_internal_models.PunchImportError:
+    properties:
+      companyId:
+        type: integer
+      createdAt:
+        type: string
+      errorMessage:
+        type: string
+      id:
+        type: string
+      importBatchId:
+        type: string
+      rawRow:
+        type: string
+      rowNumber:
+        type: integer
+    type: object
+  github_com_enterprise-erp_punchdata_internal_models.PunchLogFile:
+    properties:
+      companyId:
+        type: integer
+      contentType:
+        type: string
+      deviceId:
+        type: string
+      errorMessage:
+        type: string
+      fileName:
+        type: string
+      id:
+        type: string
+      importBatchId:
+        type: string
+      processedAt:
+        type: string
+      rowCount:
+        type: integer
+      sizeBytes:
+        type: integer
+      sourceType:
+        type: string
+      status:
+        type: string
+      uploadedAt:
+        type: string
+    type: object
+  github_com_enterprise-erp_punchdata_internal_models.PunchMachine:
+    properties:
+      companyId:
+        type: integer
+      createdAt:
+        type: string
+      deviceCode:
+        type: string
+      deviceName:
+        type: string
+      id:
+        type: string
+      ipAddress:
+        type: string
+      isActive:
+        type: boolean
+      lastConnectedAt:
+        type: string
+      lastConnectionStatus:
+        type: string
+      lastError:
+        type: string
+      lastSyncRecordCount:
+        type: integer
+      lastSyncedAt:
+        type: string
+      machineNo:
+        type: integer
+      password:
+        type: integer
+      port:
+        type: integer
+      productName:
+        type: string
+      serialNumber:
+        type: string
+      updatedAt:
+        type: string
+      useTcp:
+        type: boolean
+    type: object
+  github_com_enterprise-erp_punchdata_internal_models.PunchRecord:
+    properties:
+      companyId:
+        type: integer
+      createdAt:
+        type: string
+      deviceId:
+        type: string
+      direction:
+        type: string
+      employeeCode:
+        type: string
+      id:
+        type: string
+      logFileId:
+        type: string
+      punchTime:
+        type: string
+      source:
+        type: string
+    type: object
+  github_com_enterprise-erp_punchdata_internal_models.RemoteCollectHistory:
+    properties:
+      companyId:
+        type: integer
+      completedAt:
+        type: string
+      duplicates:
+        type: integer
+      errorMessage:
+        type: string
+      fromTime:
+        type: string
+      id:
+        type: string
+      inserted:
+        type: integer
+      logFileId:
+        type: string
+      remoteRows:
+        type: integer
+      startedAt:
+        type: string
+      status:
+        type: string
+      toTime:
+        type: string
+    type: object
+  github_com_enterprise-erp_punchdata_internal_processor.BatchPayload:
+    properties:
+      companyId:
+        type: integer
+      deviceId:
+        type: string
+      records:
+        items:
+          $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_processor.RawPunch'
+        type: array
+      source:
+        type: string
+    type: object
+  github_com_enterprise-erp_punchdata_internal_processor.RawPunch:
+    properties:
+      companyId:
+        type: integer
+      deviceId:
+        type: string
+      direction:
+        type: string
+      employeeCode:
+        type: string
+      punchTime:
+        type: string
+      source:
+        type: string
+    type: object
+  github_com_enterprise-erp_punchdata_internal_processor.Result:
+    properties:
+      duplicates:
+        type: integer
+      errorMessage:
+        type: string
+      failedLogs:
+        type: integer
+      inserted:
+        type: integer
+      logFileId:
+        type: string
+      processedAt:
+        type: string
+      rowCount:
+        type: integer
+      skipped:
+        type: integer
+      status:
+        type: string
+      warnings:
+        items:
+          type: string
+        type: array
+    type: object
+  github_com_enterprise-erp_punchdata_internal_response.ApiError:
+    properties:
+      code:
+        type: string
+      message:
+        type: string
+    type: object
+  github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any:
+    properties:
+      data: {}
+      errors:
+        items:
+          $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiError'
+        type: array
+      success:
+        type: boolean
+      traceId:
+        type: string
+    type: object
+  ? github_com_enterprise-erp_punchdata_internal_response.ApiResponse-array_github_com_enterprise-erp_punchdata_internal_models_PunchMachine
+  : properties:
+      data:
+        items:
+          $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_models.PunchMachine'
+        type: array
+      errors:
+        items:
+          $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiError'
+        type: array
+      success:
+        type: boolean
+      traceId:
+        type: string
+    type: object
+  ? github_com_enterprise-erp_punchdata_internal_response.ApiResponse-array_github_com_enterprise-erp_punchdata_internal_processor_Result
+  : properties:
+      data:
+        items:
+          $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_processor.Result'
+        type: array
+      errors:
+        items:
+          $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiError'
+        type: array
+      success:
+        type: boolean
+      traceId:
+        type: string
+    type: object
+  ? github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_collector_RemoteCollectResult
+  : properties:
+      data:
+        $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_collector.RemoteCollectResult'
+      errors:
+        items:
+          $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiError'
+        type: array
+      success:
+        type: boolean
+      traceId:
+        type: string
+    type: object
+  ? github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_devices_zkteco_ConnectionResult
+  : properties:
+      data:
+        $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_devices_zkteco.ConnectionResult'
+      errors:
+        items:
+          $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiError'
+        type: array
+      success:
+        type: boolean
+      traceId:
+        type: string
+    type: object
+  ? github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_models_PunchLogFile
+  : properties:
+      data:
+        $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_models.PunchLogFile'
+      errors:
+        items:
+          $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiError'
+        type: array
+      success:
+        type: boolean
+      traceId:
+        type: string
+    type: object
+  ? github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_models_PunchMachine
+  : properties:
+      data:
+        $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_models.PunchMachine'
+      errors:
+        items:
+          $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiError'
+        type: array
+      success:
+        type: boolean
+      traceId:
+        type: string
+    type: object
+  github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_processor_Result:
+    properties:
+      data:
+        $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_processor.Result'
+      errors:
+        items:
+          $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiError'
+        type: array
+      success:
+        type: boolean
+      traceId:
+        type: string
+    type: object
+  ? github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_response_PagedResult-github_com_enterprise-erp_punchdata_internal_models_DeviceSyncHistory
+  : properties:
+      data:
+        $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.PagedResult-github_com_enterprise-erp_punchdata_internal_models_DeviceSyncHistory'
+      errors:
+        items:
+          $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiError'
+        type: array
+      success:
+        type: boolean
+      traceId:
+        type: string
+    type: object
+  ? github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_response_PagedResult-github_com_enterprise-erp_punchdata_internal_models_PunchImportBatch
+  : properties:
+      data:
+        $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.PagedResult-github_com_enterprise-erp_punchdata_internal_models_PunchImportBatch'
+      errors:
+        items:
+          $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiError'
+        type: array
+      success:
+        type: boolean
+      traceId:
+        type: string
+    type: object
+  ? github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_response_PagedResult-github_com_enterprise-erp_punchdata_internal_models_PunchImportError
+  : properties:
+      data:
+        $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.PagedResult-github_com_enterprise-erp_punchdata_internal_models_PunchImportError'
+      errors:
+        items:
+          $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiError'
+        type: array
+      success:
+        type: boolean
+      traceId:
+        type: string
+    type: object
+  ? github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_response_PagedResult-github_com_enterprise-erp_punchdata_internal_models_PunchLogFile
+  : properties:
+      data:
+        $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.PagedResult-github_com_enterprise-erp_punchdata_internal_models_PunchLogFile'
+      errors:
+        items:
+          $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiError'
+        type: array
+      success:
+        type: boolean
+      traceId:
+        type: string
+    type: object
+  ? github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_response_PagedResult-github_com_enterprise-erp_punchdata_internal_models_PunchMachine
+  : properties:
+      data:
+        $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.PagedResult-github_com_enterprise-erp_punchdata_internal_models_PunchMachine'
+      errors:
+        items:
+          $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiError'
+        type: array
+      success:
+        type: boolean
+      traceId:
+        type: string
+    type: object
+  ? github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_response_PagedResult-github_com_enterprise-erp_punchdata_internal_models_PunchRecord
+  : properties:
+      data:
+        $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.PagedResult-github_com_enterprise-erp_punchdata_internal_models_PunchRecord'
+      errors:
+        items:
+          $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiError'
+        type: array
+      success:
+        type: boolean
+      traceId:
+        type: string
+    type: object
+  ? github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_response_PagedResult-github_com_enterprise-erp_punchdata_internal_models_RemoteCollectHistory
+  : properties:
+      data:
+        $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.PagedResult-github_com_enterprise-erp_punchdata_internal_models_RemoteCollectHistory'
+      errors:
+        items:
+          $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiError'
+        type: array
+      success:
+        type: boolean
+      traceId:
+        type: string
+    type: object
+  github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_sync_Result:
+    properties:
+      data:
+        $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_sync.Result'
+      errors:
+        items:
+          $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiError'
+        type: array
+      success:
+        type: boolean
+      traceId:
+        type: string
+    type: object
+  github_com_enterprise-erp_punchdata_internal_response.ApiResponse-internal_handlers_manualPunchResponse:
+    properties:
+      data:
+        $ref: '#/definitions/internal_handlers.manualPunchResponse'
+      errors:
+        items:
+          $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiError'
+        type: array
+      success:
+        type: boolean
+      traceId:
+        type: string
+    type: object
+  github_com_enterprise-erp_punchdata_internal_response.ApiResponse-internal_handlers_remoteCollectPreviewResponse:
+    properties:
+      data:
+        $ref: '#/definitions/internal_handlers.remoteCollectPreviewResponse'
+      errors:
+        items:
+          $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiError'
+        type: array
+      success:
+        type: boolean
+      traceId:
+        type: string
+    type: object
+  ? github_com_enterprise-erp_punchdata_internal_response.PagedResult-github_com_enterprise-erp_punchdata_internal_models_DeviceSyncHistory
+  : properties:
+      items:
+        items:
+          $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_models.DeviceSyncHistory'
+        type: array
+      page:
+        type: integer
+      pageSize:
+        type: integer
+      totalCount:
+        type: integer
+    type: object
+  ? github_com_enterprise-erp_punchdata_internal_response.PagedResult-github_com_enterprise-erp_punchdata_internal_models_PunchImportBatch
+  : properties:
+      items:
+        items:
+          $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_models.PunchImportBatch'
+        type: array
+      page:
+        type: integer
+      pageSize:
+        type: integer
+      totalCount:
+        type: integer
+    type: object
+  ? github_com_enterprise-erp_punchdata_internal_response.PagedResult-github_com_enterprise-erp_punchdata_internal_models_PunchImportError
+  : properties:
+      items:
+        items:
+          $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_models.PunchImportError'
+        type: array
+      page:
+        type: integer
+      pageSize:
+        type: integer
+      totalCount:
+        type: integer
+    type: object
+  ? github_com_enterprise-erp_punchdata_internal_response.PagedResult-github_com_enterprise-erp_punchdata_internal_models_PunchLogFile
+  : properties:
+      items:
+        items:
+          $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_models.PunchLogFile'
+        type: array
+      page:
+        type: integer
+      pageSize:
+        type: integer
+      totalCount:
+        type: integer
+    type: object
+  ? github_com_enterprise-erp_punchdata_internal_response.PagedResult-github_com_enterprise-erp_punchdata_internal_models_PunchMachine
+  : properties:
+      items:
+        items:
+          $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_models.PunchMachine'
+        type: array
+      page:
+        type: integer
+      pageSize:
+        type: integer
+      totalCount:
+        type: integer
+    type: object
+  ? github_com_enterprise-erp_punchdata_internal_response.PagedResult-github_com_enterprise-erp_punchdata_internal_models_PunchRecord
+  : properties:
+      items:
+        items:
+          $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_models.PunchRecord'
+        type: array
+      page:
+        type: integer
+      pageSize:
+        type: integer
+      totalCount:
+        type: integer
+    type: object
+  ? github_com_enterprise-erp_punchdata_internal_response.PagedResult-github_com_enterprise-erp_punchdata_internal_models_RemoteCollectHistory
+  : properties:
+      items:
+        items:
+          $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_models.RemoteCollectHistory'
+        type: array
+      page:
+        type: integer
+      pageSize:
+        type: integer
+      totalCount:
+        type: integer
+    type: object
+  github_com_enterprise-erp_punchdata_internal_sync.Result:
+    properties:
+      connection:
+        $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_devices_zkteco.ConnectionResult'
+      history:
+        $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_models.DeviceSyncHistory'
+      logFile:
+        $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_models.PunchLogFile'
+      process:
+        $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_processor.Result'
+    type: object
+  internal_handlers.BulkMachineRequest:
+    properties:
+      machines:
+        items:
+          $ref: '#/definitions/internal_handlers.CreateMachineRequest'
+        type: array
+    type: object
+  internal_handlers.CreateMachineRequest:
+    properties:
+      companyId:
+        type: integer
+      deviceCode:
+        type: string
+      deviceName:
+        type: string
+      ipAddress:
+        type: string
+      isActive:
+        type: boolean
+      machineNo:
+        type: integer
+      password:
+        type: integer
+      port:
+        type: integer
+      productName:
+        type: string
+      serialNumber:
+        type: string
+      useTcp:
+        type: boolean
+    type: object
+  internal_handlers.HealthResponse:
+    properties:
+      db:
+        type: string
+      remoteZkteco:
+        type: string
+      service:
+        example: PunchDataService
+        type: string
+      status:
+        example: Healthy
+        type: string
+    type: object
+  internal_handlers.manualPunchRequest:
+    properties:
+      companyId:
+        type: integer
+      deviceId:
+        type: string
+      direction:
+        type: string
+      employeeCode:
+        type: string
+      punchTime:
+        type: string
+      source:
+        type: string
+    type: object
+  internal_handlers.manualPunchResponse:
+    properties:
+      duplicate:
+        type: boolean
+      record:
+        $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_models.PunchRecord'
+    type: object
+  internal_handlers.remoteCollectBody:
+    properties:
+      batchSize:
+        type: integer
+      companyId:
+        type: integer
+      from:
+        type: string
+      to:
+        type: string
+      useWatermark:
+        type: boolean
+    type: object
+  internal_handlers.remoteCollectPreviewResponse:
+    properties:
+      from:
+        type: string
+      readOnly:
+        type: boolean
+      remoteRows:
+        type: integer
+      to:
+        type: string
+    type: object
+info:
+  contact:
+    name: EnterpriseERP Platform Team
+  description: Collects raw punch logs from biometric devices, file uploads, manual
+    entry, and read-only import from a public ZKTeco SQL Server. Stores normalised
+    rows in PunchRecords with deduplication. Does not calculate attendance (see AttendanceService).
+  title: PunchDataService API
+  version: "1.0"
+paths:
+  /api/v1/punch-data/imports:
+    get:
+      parameters:
+      - description: Filter by company id (from query or JWT)
+        in: query
+        name: companyId
+        type: integer
+      - description: Filter by batch status
+        in: query
+        name: status
+        type: string
+      - default: 1
+        description: Page (1-based)
+        in: query
+        name: page
+        type: integer
+      - default: 50
+        description: Page size
+        in: query
+        name: pageSize
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_response_PagedResult-github_com_enterprise-erp_punchdata_internal_models_PunchImportBatch'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+      security:
+      - BearerAuth: []
+      summary: List import batch history
+      tags:
+      - imports
+  /api/v1/punch-data/imports/{id}/errors:
+    get:
+      parameters:
+      - description: Import batch id (uuid)
+        in: path
+        name: id
+        required: true
+        type: string
+      - default: 1
+        description: Page (1-based)
+        in: query
+        name: page
+        type: integer
+      - default: 100
+        description: Page size
+        in: query
+        name: pageSize
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_response_PagedResult-github_com_enterprise-erp_punchdata_internal_models_PunchImportError'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+      security:
+      - BearerAuth: []
+      summary: List row errors for an import batch
+      tags:
+      - imports
+  /api/v1/punch-data/logs:
+    get:
+      description: Returns a paginated slice of log payloads, newest first.
+      parameters:
+      - description: Filter by company id
+        in: query
+        name: companyId
+        type: integer
+      - description: Filter by device id
+        in: query
+        name: deviceId
+        type: string
+      - description: Filter by status
+        enum:
+        - Pending
+        - Processing
+        - Completed
+        - Failed
+        in: query
+        name: status
+        type: string
+      - default: 1
+        description: Page number (1-based)
+        in: query
+        name: page
+        type: integer
+      - default: 50
+        description: Page size (max 200)
+        in: query
+        name: pageSize
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_response_PagedResult-github_com_enterprise-erp_punchdata_internal_models_PunchLogFile'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+      security:
+      - BearerAuth: []
+      summary: List uploaded log files
+      tags:
+      - logs
+  /api/v1/punch-data/logs/{id}:
+    get:
+      description: Returns a single log payload row without the raw bytes (use /download
+        for the bytes).
+      parameters:
+      - description: Log file id (uuid)
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_models_PunchLogFile'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+      security:
+      - BearerAuth: []
+      summary: Get log file metadata
+      tags:
+      - logs
+  /api/v1/punch-data/logs/{id}/download:
+    get:
+      description: Streams back the bytes of the original uploaded log file.
+      parameters:
+      - description: Log file id (uuid)
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/octet-stream
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: file
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+      security:
+      - BearerAuth: []
+      summary: Download the original raw payload
+      tags:
+      - logs
+  /api/v1/punch-data/logs/{id}/process:
+    post:
+      description: Re-runs parsing + normalisation for the given log payload. Existing
+        punch records derived from it are removed before reinsert.
+      parameters:
+      - description: Log file id (uuid)
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_processor_Result'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+      security:
+      - BearerAuth: []
+      summary: (Re-)process a single log file
+      tags:
+      - logs
+  /api/v1/punch-data/logs/{id}/records:
+    get:
+      parameters:
+      - description: Log file id (uuid)
+        in: path
+        name: id
+        required: true
+        type: string
+      - default: 1
+        description: Page (1-based)
+        in: query
+        name: page
+        type: integer
+      - default: 200
+        description: Page size
+        in: query
+        name: pageSize
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_response_PagedResult-github_com_enterprise-erp_punchdata_internal_models_PunchRecord'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+      security:
+      - BearerAuth: []
+      summary: List punch records for a log file
+      tags:
+      - logs
+  /api/v1/punch-data/logs/batch:
+    post:
+      consumes:
+      - application/json
+      description: Persists a raw JSON batch (no file) and, unless `autoProcess=false`,
+        immediately normalises it into punch records.
+      parameters:
+      - default: "true"
+        description: Process immediately after persisting
+        enum:
+        - "true"
+        - "false"
+        in: query
+        name: autoProcess
+        type: string
+      - description: 'Batch payload: companyId, deviceId, source, records[]'
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_processor.BatchPayload'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_models_PunchLogFile'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+      security:
+      - BearerAuth: []
+      summary: Ingest a JSON batch of punches
+      tags:
+      - logs
+  /api/v1/punch-data/logs/upload:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Accepts a multipart upload of a CSV or JSON punch payload. The
+        file is persisted and (unless `autoProcess=false`) immediately parsed into
+        normalised punch records.
+      parameters:
+      - description: Punch log file (CSV or JSON)
+        in: formData
+        name: file
+        required: true
+        type: file
+      - description: Company id to associate with the payload
+        in: formData
+        name: companyId
+        type: integer
+      - description: Source device identifier
+        in: formData
+        name: deviceId
+        type: string
+      - default: "true"
+        description: Process immediately after upload
+        enum:
+        - "true"
+        - "false"
+        in: formData
+        name: autoProcess
+        type: string
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_models_PunchLogFile'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+        "413":
+          description: Request Entity Too Large
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+      security:
+      - BearerAuth: []
+      summary: Upload a punch log file
+      tags:
+      - logs
+  /api/v1/punch-data/machines:
+    get:
+      parameters:
+      - description: Filter by company id
+        in: query
+        name: companyId
+        type: integer
+      - description: Connection status filter
+        in: query
+        name: status
+        type: string
+      - description: Filter by active flag
+        in: query
+        name: isActive
+        type: boolean
+      - default: 1
+        description: Page (1-based)
+        in: query
+        name: page
+        type: integer
+      - default: 50
+        description: Page size
+        in: query
+        name: pageSize
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_response_PagedResult-github_com_enterprise-erp_punchdata_internal_models_PunchMachine'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+      security:
+      - BearerAuth: []
+      summary: List punch machines
+      tags:
+      - machines
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Punch machine details
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/internal_handlers.CreateMachineRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_models_PunchMachine'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+      security:
+      - BearerAuth: []
+      summary: Create or update a punch machine
+      tags:
+      - machines
+  /api/v1/punch-data/machines/{id}/connect:
+    post:
+      parameters:
+      - description: Machine id (uuid)
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_devices_zkteco_ConnectionResult'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+        "502":
+          description: Bad Gateway
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+      security:
+      - BearerAuth: []
+      summary: Test punch machine connectivity
+      tags:
+      - machines
+  /api/v1/punch-data/machines/{id}/sync:
+    post:
+      description: Downloads ZKTeco attendance logs, stores a raw PunchLogFile, and
+        processes it into PunchRecords. Attendance calculation is handled by AttendanceService.
+      parameters:
+      - description: Machine id (uuid)
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_sync_Result'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+        "502":
+          description: Bad Gateway
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+      security:
+      - BearerAuth: []
+      summary: Manually sync attendance from a punch machine
+      tags:
+      - machines
+  /api/v1/punch-data/machines/bulk:
+    post:
+      consumes:
+      - application/json
+      description: Upserts each machine in the machines array.
+      parameters:
+      - description: Punch machines
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/internal_handlers.BulkMachineRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-array_github_com_enterprise-erp_punchdata_internal_models_PunchMachine'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+      security:
+      - BearerAuth: []
+      summary: Create or update punch machines in bulk
+      tags:
+      - machines
+  /api/v1/punch-data/process:
+    post:
+      description: Runs the processor over every payload currently in `Pending` status,
+        oldest first.
+      parameters:
+      - default: 50
+        description: Maximum number of payloads to process in one call
+        in: query
+        name: limit
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-array_github_com_enterprise-erp_punchdata_internal_processor_Result'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+      security:
+      - BearerAuth: []
+      summary: Process all pending log files
+      tags:
+      - logs
+  /api/v1/punch-data/punches:
+    get:
+      description: Paginated punch records. Pass companyId in query or JWT when scoped.
+      parameters:
+      - description: Filter by company id
+        in: query
+        name: companyId
+        type: integer
+      - description: Filter by employee code
+        in: query
+        name: employeeCode
+        type: string
+      - description: Filter by device id
+        in: query
+        name: deviceId
+        type: string
+      - description: Filter by direction
+        enum:
+        - In
+        - Out
+        - Unknown
+        in: query
+        name: direction
+        type: string
+      - description: Filter by source log file id (uuid)
+        in: query
+        name: logFileId
+        type: string
+      - description: Punch time from (RFC3339 or local)
+        in: query
+        name: from
+        type: string
+      - description: Punch time to (RFC3339 or local)
+        in: query
+        name: to
+        type: string
+      - default: 1
+        description: Page (1-based)
+        in: query
+        name: page
+        type: integer
+      - default: 100
+        description: Page size (max 500)
+        in: query
+        name: pageSize
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_response_PagedResult-github_com_enterprise-erp_punchdata_internal_models_PunchRecord'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+      security:
+      - BearerAuth: []
+      summary: List raw punch logs
+      tags:
+      - punches
+  /api/v1/punch-data/punches/manual:
+    post:
+      consumes:
+      - application/json
+      description: Does not calculate attendance (raw log collection only). Duplicate
+        punches are ignored.
+      parameters:
+      - description: Manual punch
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/internal_handlers.manualPunchRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-internal_handlers_manualPunchResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+      security:
+      - BearerAuth: []
+      summary: Create a manual raw punch log
+      tags:
+      - punches
+  /api/v1/punch-data/remote/collect:
+    post:
+      consumes:
+      - application/json
+      description: Read-only SELECT from remote CHECKINOUT; stores new rows in PunchRecords
+        with deduplication (company + employee + device + punch time). Does not modify
+        the remote database.
+      parameters:
+      - description: Collect window
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/internal_handlers.remoteCollectBody'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_collector_RemoteCollectResult'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+        "502":
+          description: Bad Gateway
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+        "503":
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+      security:
+      - BearerAuth: []
+      summary: Collect punches from public ZKTeco SQL Server
+      tags:
+      - remote-collect
+  /api/v1/punch-data/remote/collect/histories:
+    get:
+      description: Paginated history of read-only imports from the public ZKTeco database.
+      parameters:
+      - description: Company filter
+        in: query
+        name: companyId
+        type: integer
+      - default: 1
+        description: Page (1-based)
+        in: query
+        name: page
+        type: integer
+      - default: 20
+        description: Page size (max 100)
+        in: query
+        name: pageSize
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_response_PagedResult-github_com_enterprise-erp_punchdata_internal_models_RemoteCollectHistory'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+        "503":
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+      security:
+      - BearerAuth: []
+      summary: List remote collect runs
+      tags:
+      - remote-collect
+  /api/v1/punch-data/remote/collect/preview:
+    get:
+      description: Counts rows on public CHECKINOUT in the time window without importing.
+        Defaults to the last 24 hours when from/to are omitted.
+      parameters:
+      - description: 'RFC3339 start (default: now - 24h)'
+        in: query
+        name: from
+        type: string
+      - description: 'RFC3339 end (default: now)'
+        in: query
+        name: to
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-internal_handlers_remoteCollectPreviewResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+        "502":
+          description: Bad Gateway
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+        "503":
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+      security:
+      - BearerAuth: []
+      summary: Preview remote punch row count
+      tags:
+      - remote-collect
+  /api/v1/punch-data/sync-histories:
+    get:
+      parameters:
+      - description: Filter by company id
+        in: query
+        name: companyId
+        type: integer
+      - description: Sync status filter
+        in: query
+        name: status
+        type: string
+      - default: 1
+        description: Page (1-based)
+        in: query
+        name: page
+        type: integer
+      - default: 50
+        description: Page size
+        in: query
+        name: pageSize
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-github_com_enterprise-erp_punchdata_internal_response_PagedResult-github_com_enterprise-erp_punchdata_internal_models_DeviceSyncHistory'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/github_com_enterprise-erp_punchdata_internal_response.ApiResponse-any'
+      security:
+      - BearerAuth: []
+      summary: List device sync history
+      tags:
+      - machines
+  /health:
+    get:
+      description: Liveness probe + local PunchDataDB ping. When remote collect is
+        configured, includes public ZKTeco SQL reachability (read-only ping).
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/internal_handlers.HealthResponse'
+        "503":
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/internal_handlers.HealthResponse'
+      summary: Health check
+      tags:
+      - health
+schemes:
+- http
+- https
+securityDefinitions:
+  BearerAuth:
+    description: 'JWT issued by AuthService. Send as: `Bearer <token>`. Pass companyId
+      in body or query when needed.'
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
+tags:
+- description: Liveness and database connectivity
+  name: health
+- description: Upload, batch ingest, and process raw punch payloads
+  name: logs
+- description: Query and manually add normalised punch records
+  name: punches
+- description: ZKTeco device registry, connectivity test, and LAN sync
+  name: machines
+- description: CSV/Excel import batch history and row errors
+  name: imports
+- description: Read-only collect from public ZKTeco SQL (CHECKINOUT) into PunchRecords
+  name: remote-collect

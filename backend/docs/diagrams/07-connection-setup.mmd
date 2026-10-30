@@ -1,0 +1,21 @@
+flowchart LR
+    subgraph Config
+        CS[connectionstrings.json]
+        ENV[hrhub .env.local]
+    end
+
+    subgraph Build
+        BLD[dotnet build]
+        COPY[Copy to Platform.Host bin]
+    end
+
+    subgraph Run
+        SQL[(SQL Server)]
+        BE[Platform.Host :5000]
+        FE[yarn dev :3000]
+    end
+
+    CS --> BLD --> COPY --> BE
+    BE --> SQL
+    ENV --> FE
+    FE -->|NEXT_PUBLIC_API_URL| BE

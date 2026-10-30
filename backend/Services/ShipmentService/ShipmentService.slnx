@@ -1,0 +1,9 @@
+<Solution>
+  <Project Path="../../BuildingBlocks/Erp.BuildingBlocks.Hosting/Erp.BuildingBlocks.Hosting.csproj" />
+  <Project Path="ShipmentService.API/ShipmentService.API.csproj" />
+  <Project Path="ShipmentService.Application/ShipmentService.Application.csproj" />
+  <Project Path="ShipmentService.Contracts/ShipmentService.Contracts.csproj" />
+  <Project Path="ShipmentService.Domain/ShipmentService.Domain.csproj" />
+  <Project Path="ShipmentService.Infrastructure/ShipmentService.Infrastructure.csproj" />
+  <Project Path="ShipmentService.Tests/ShipmentService.Tests.csproj" />
+</Solution>

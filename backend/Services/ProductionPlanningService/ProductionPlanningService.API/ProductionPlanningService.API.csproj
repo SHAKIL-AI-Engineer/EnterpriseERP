@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Asp.Versioning.Mvc" Version="8.1.0" />
+    <PackageReference Include="Asp.Versioning.Mvc.ApiExplorer" Version="8.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="10.0.2" />
+    <PackageReference Include="Serilog.AspNetCore" Version="10.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="7.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\BuildingBlocks\CommonSecurity\Erp.BuildingBlocks.CommonSecurity.csproj" />
+    <ProjectReference Include="..\ProductionPlanningService.Application\ProductionPlanningService.Application.csproj" />
+    <ProjectReference Include="..\ProductionPlanningService.Contracts\ProductionPlanningService.Contracts.csproj" />
+    <ProjectReference Include="..\ProductionPlanningService.Domain\ProductionPlanningService.Domain.csproj" />
+    <ProjectReference Include="..\ProductionPlanningService.Infrastructure\ProductionPlanningService.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

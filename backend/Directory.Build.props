@@ -1,0 +1,6 @@
+<Project>
+  <ItemGroup>
+    <!-- Override the vulnerable version pulled transitively by the SQL client. -->
+    <PackageReference Include="System.Security.Cryptography.Pkcs" Version="10.0.14" />
+  </ItemGroup>
+</Project>

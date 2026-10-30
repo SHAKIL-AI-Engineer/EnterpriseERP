@@ -1,0 +1,24 @@
+{
+  "ConnectionStrings": {
+    "AuthDb": "Server=SHAKIL\\SQLEXPRESS;Database=AuthServiceDB;User Id=sa;Password=shakil52814542A;Encrypt=Mandatory;TrustServerCertificate=True;MultipleActiveResultSets=true",
+    "CompanyDb": "Server=SHAKIL\\SQLEXPRESS;Database=CompanyServiceDB;User Id=sa;Password=shakil52814542A;Encrypt=Mandatory;TrustServerCertificate=True;MultipleActiveResultSets=true",
+    "HrDb": "Server=SHAKIL\\SQLEXPRESS;Database=HRServiceDB;User Id=sa;Password=shakil52814542A;Encrypt=Mandatory;TrustServerCertificate=True;MultipleActiveResultSets=true",
+    "AttendanceDb": "Server=SHAKIL\\SQLEXPRESS;Database=AttendanceServiceDB;User Id=sa;Password=shakil52814542A;Encrypt=Mandatory;TrustServerCertificate=True;MultipleActiveResultSets=true",
+    "LeaveDb": "Server=SHAKIL\\SQLEXPRESS;Database=LeaveServiceDB;User Id=sa;Password=shakil52814542A;Encrypt=Mandatory;TrustServerCertificate=True;MultipleActiveResultSets=true",
+    "ShiftDb": "Server=SHAKIL\\SQLEXPRESS;Database=ShiftServiceDB;User Id=sa;Password=shakil52814542A;Encrypt=Mandatory;TrustServerCertificate=True;MultipleActiveResultSets=true",
+    "PayrollDb": "Server=SHAKIL\\SQLEXPRESS;Database=PayrollServiceDB;User Id=sa;Password=shakil52814542A;Encrypt=Mandatory;TrustServerCertificate=True;MultipleActiveResultSets=true",
+    "NotificationDb": "Server=SHAKIL\\SQLEXPRESS;Database=NotificationServiceDB;User Id=sa;Password=shakil52814542A;Encrypt=Mandatory;TrustServerCertificate=True;MultipleActiveResultSets=true",
+    "PunchDataDb": "Server=SHAKIL\\SQLEXPRESS;Database=PunchDataDB;User Id=sa;Password=shakil52814542A;Encrypt=Mandatory;TrustServerCertificate=True;MultipleActiveResultSets=true",
+    "RemoteZktecoDb": "Server=SHAKIL\\SQLEXPRESS;Database=zkteco;Trusted_Connection=True;Encrypt=Mandatory;TrustServerCertificate=True;MultipleActiveResultSets=true",
+    "ImportExportDb": "Server=SHAKIL\\SQLEXPRESS;Database=ImportExportDB;User Id=sa;Password=shakil52814542A;Encrypt=Mandatory;TrustServerCertificate=True;MultipleActiveResultSets=true",
+    "QualityDb": "Server=SHAKIL\\SQLEXPRESS;Database=QualityServiceDB;User Id=sa;Password=shakil52814542A;Encrypt=Mandatory;TrustServerCertificate=True;MultipleActiveResultSets=true",
+    "FinishingDb": "Server=SHAKIL\\SQLEXPRESS;Database=FinishingServiceDB;User Id=sa;Password=shakil52814542A;Encrypt=Mandatory;TrustServerCertificate=True;MultipleActiveResultSets=true",
+    "SecurityDb": "Server=SHAKIL\\SQLEXPRESS;Database=SecurityServiceDB;User Id=sa;Password=shakil52814542A;Encrypt=Mandatory;TrustServerCertificate=True;MultipleActiveResultSets=true",
+    "AccountsDb": "Server=SHAKIL\\SQLEXPRESS;Database=AccountsServiceDB;User Id=sa;Password=shakil52814542A;Encrypt=Mandatory;TrustServerCertificate=True;MultipleActiveResultSets=true",
+    "CuttingDb": "Server=SHAKIL\\SQLEXPRESS;Database=CuttingServiceDB;User Id=sa;Password=shakil52814542A;Encrypt=Mandatory;TrustServerCertificate=True;MultipleActiveResultSets=true",
+    "MerchandisingDb": "Server=SHAKIL\\SQLEXPRESS;Database=MerchandisingServiceDB;User Id=sa;Password=shakil52814542A;Encrypt=Mandatory;TrustServerCertificate=True;MultipleActiveResultSets=true",
+    "Redis": "localhost:6379"
+  }
+}
+
+

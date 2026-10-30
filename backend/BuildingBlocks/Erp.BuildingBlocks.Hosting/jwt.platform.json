@@ -1,0 +1,9 @@
+{
+  "Jwt": {
+    "Issuer": "AuthService",
+    "Audience": "Erp.Platform",
+    "AccessTokenMinutes": 1440,
+    "RefreshTokenDays": 7,
+    "SigningKey": "CHANGE_THIS_TO_A_LONG_RANDOM_SECRET_KEY_32+"
+  }
+}

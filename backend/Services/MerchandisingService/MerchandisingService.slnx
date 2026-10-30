@@ -1,0 +1,9 @@
+<Solution>
+  <Project Path="../../BuildingBlocks/Erp.BuildingBlocks.Hosting/Erp.BuildingBlocks.Hosting.csproj" />
+  <Project Path="MerchandisingService.API/MerchandisingService.API.csproj" />
+  <Project Path="MerchandisingService.Application/MerchandisingService.Application.csproj" />
+  <Project Path="MerchandisingService.Contracts/MerchandisingService.Contracts.csproj" />
+  <Project Path="MerchandisingService.Domain/MerchandisingService.Domain.csproj" />
+  <Project Path="MerchandisingService.Infrastructure/MerchandisingService.Infrastructure.csproj" />
+  <Project Path="MerchandisingService.Tests/MerchandisingService.Tests.csproj" />
+</Solution>

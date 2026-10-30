@@ -1,0 +1,13 @@
+flowchart TD
+    A[Attendance date + employee] --> B{Temporary shift for date?}
+    B -->|Yes| T[Use TemporaryShiftAssignment]
+    B -->|No| C{Current roster assignment?}
+    C -->|Yes| R[Use EmployeeShiftAssignment]
+    C -->|No| D{Default company shift?}
+    D -->|Yes| G[Use Shift IsDefault]
+    D -->|No| F[Fallback shift]
+    T & R & G & F --> E[ShiftEvaluationService]
+    E --> W[Punch window Start/End]
+    E --> P[ShiftRule: late, OT, grace]
+    E --> H[Holiday / WeeklyOff from Leave calendar]
+    W & P & H --> OUT[ShiftEvaluationDto to Attendance]

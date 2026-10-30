@@ -1,0 +1,8 @@
+<Solution>
+  <Project Path="../../BuildingBlocks/Erp.BuildingBlocks.Hosting/Erp.BuildingBlocks.Hosting.csproj" />
+  <Project Path="InventoryService.API/InventoryService.API.csproj" />
+  <Project Path="InventoryService.Application/InventoryService.Application.csproj" />
+  <Project Path="InventoryService.Contracts/InventoryService.Contracts.csproj" />
+  <Project Path="InventoryService.Domain/InventoryService.Domain.csproj" />
+  <Project Path="InventoryService.Infrastructure/InventoryService.Infrastructure.csproj" />
+</Solution>

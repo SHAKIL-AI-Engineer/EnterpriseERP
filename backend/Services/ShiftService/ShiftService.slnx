@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="ShiftService.Api/ShiftService.Api.csproj" />
+  <Project Path="ShiftService.Application/ShiftService.Application.csproj" />
+  <Project Path="ShiftService.Domain/ShiftService.Domain.csproj" />
+  <Project Path="ShiftService.Infrastructure/ShiftService.Infrastructure.csproj" />
+  <Project Path="ShiftService.Tests/ShiftService.Tests.csproj" />
+</Solution>

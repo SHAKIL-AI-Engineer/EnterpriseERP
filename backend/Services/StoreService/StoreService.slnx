@@ -1,0 +1,8 @@
+<Solution>
+  <Project Path="../../BuildingBlocks/Erp.BuildingBlocks.Hosting/Erp.BuildingBlocks.Hosting.csproj" />
+  <Project Path="StoreService.API/StoreService.API.csproj" />
+  <Project Path="StoreService.Application/StoreService.Application.csproj" />
+  <Project Path="StoreService.Contracts/StoreService.Contracts.csproj" />
+  <Project Path="StoreService.Domain/StoreService.Domain.csproj" />
+  <Project Path="StoreService.Infrastructure/StoreService.Infrastructure.csproj" />
+</Solution>

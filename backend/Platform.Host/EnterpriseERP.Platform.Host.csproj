@@ -1,0 +1,65 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>EnterpriseERP.Platform.Host</AssemblyName>
+    <RootNamespace>EnterpriseERP.Platform.Host</RootNamespace>
+    <!-- Composite host references many *.Api projects that each ship appsettings.json. -->
+    <ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="Templates\company-organogram-import-demo.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BuildingBlocks\Erp.BuildingBlocks.Hosting\Erp.BuildingBlocks.Hosting.csproj" />
+    <ProjectReference Include="..\BuildingBlocks\CommonSecurity\Erp.BuildingBlocks.CommonSecurity.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="10.0.2" />
+    <PackageReference Include="Serilog.AspNetCore" Version="10.0.0" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="6.1.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="7.3.1" />
+    <PackageReference Include="ClosedXML" Version="0.104.2" />
+    <PackageReference Include="Yarp.ReverseProxy" Version="2.3.0" />
+    <PackageReference Include="Asp.Versioning.Mvc" Version="8.1.0" />
+    <PackageReference Include="Asp.Versioning.Mvc.ApiExplorer" Version="8.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Services\AuthService\AuthService.Api\AuthService.Api.csproj" />
+    <ProjectReference Include="..\Services\CompanyService\CompanyService.Api\CompanyService.Api.csproj" />
+    <ProjectReference Include="..\Services\HRService\HRService.Api\HRService.Api.csproj" />
+    <ProjectReference Include="..\Services\AttendanceService\AttendanceService.Api\AttendanceService.Api.csproj" />
+    <ProjectReference Include="..\Services\LeaveService\LeaveService.Api\LeaveService.Api.csproj" />
+    <ProjectReference Include="..\Services\ShiftService\ShiftService.Api\ShiftService.Api.csproj" />
+    <ProjectReference Include="..\Services\PayrollService\PayrollService.Api\PayrollService.Api.csproj" />
+
+    <ProjectReference Include="..\Services\FinishingService\FinishingService.API\FinishingService.API.csproj" />
+    <ProjectReference Include="..\Services\QualityService\QualityService.API\QualityService.API.csproj" />
+    <ProjectReference Include="..\Services\SecurityService\SecurityService.API\SecurityService.API.csproj" />
+    <ProjectReference Include="..\Services\AccountsService\AccountsService.API\AccountsService.API.csproj" />
+    <!-- Direct refs so IDE/OmniSharp resolves Program.cs types (transitive refs via *.Api are not always indexed). -->
+    <ProjectReference Include="..\Services\LeaveService\LeaveService.Application\LeaveService.Application.csproj" />
+    <ProjectReference Include="..\Services\LeaveService\LeaveService.Infrastructure\LeaveService.Infrastructure.csproj" />
+    <ProjectReference Include="..\Services\ShiftService\ShiftService.Application\ShiftService.Application.csproj" />
+    <ProjectReference Include="..\Services\ShiftService\ShiftService.Infrastructure\ShiftService.Infrastructure.csproj" />
+    <ProjectReference Include="..\Services\PayrollService\PayrollService.Application\PayrollService.Application.csproj" />
+    <ProjectReference Include="..\Services\PayrollService\PayrollService.Infrastructure\PayrollService.Infrastructure.csproj" />
+    <ProjectReference Include="..\Services\PayrollService\PayrollService.Domain\PayrollService.Domain.csproj" />
+
+    <ProjectReference Include="..\Services\SecurityService\SecurityService.Infrastructure\SecurityService.Infrastructure.csproj" />
+    <ProjectReference Include="..\Services\QualityService\QualityService.Infrastructure\QualityService.Infrastructure.csproj" />
+    <ProjectReference Include="..\Services\FinishingService\FinishingService.Infrastructure\FinishingService.Infrastructure.csproj" />
+    <ProjectReference Include="..\Services\AccountsService\AccountsService.Infrastructure\AccountsService.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,14 @@
+**/.git
+**/.vs
+**/bin
+**/obj
+**/node_modules
+**/data
+**/*.md
+**/Services/*/Tests
+**/Services/*/*Tests
+
+# Local secrets must never enter image build layers.
+.env
+.env.*
+!.env.example

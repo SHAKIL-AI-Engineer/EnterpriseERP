@@ -1,0 +1,8 @@
+<Solution>
+  <Project Path="../../BuildingBlocks/Erp.BuildingBlocks.Hosting/Erp.BuildingBlocks.Hosting.csproj" />
+  <Project Path="ProcurementService.API/ProcurementService.API.csproj" />
+  <Project Path="ProcurementService.Application/ProcurementService.Application.csproj" />
+  <Project Path="ProcurementService.Contracts/ProcurementService.Contracts.csproj" />
+  <Project Path="ProcurementService.Domain/ProcurementService.Domain.csproj" />
+  <Project Path="ProcurementService.Infrastructure/ProcurementService.Infrastructure.csproj" />
+</Solution>

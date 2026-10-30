@@ -1,0 +1,29 @@
+[
+    {
+        "id": 1,
+        "companyName": "Acme Global Solutions",
+        "registrationNo": "REG-2026-X123",
+        "industry": "Technology / SaaS",
+        "email": "hr@acme.com",
+        "status": "Active",
+        "founded": "2010"
+    },
+    {
+        "id": 2,
+        "companyName": "Stark Industries",
+        "registrationNo": "REG-2022-STARK",
+        "industry": "Manufacturing",
+        "email": "contact@stark.com",
+        "status": "Active",
+        "founded": "1940"
+    },
+    {
+        "id": 3,
+        "companyName": "Wayne Enterprises",
+        "registrationNo": "REG-1939-WAYNE",
+        "industry": "Defense",
+        "email": "admin@wayne.com",
+        "status": "Inactive",
+        "founded": "1939"
+    }
+]

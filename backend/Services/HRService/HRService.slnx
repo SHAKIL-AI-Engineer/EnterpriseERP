@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="HRService.Api/HRService.Api.csproj" />
+  <Project Path="HRService.Application/HRService.Application.csproj" />
+  <Project Path="HRService.Domain/HRService.Domain.csproj" />
+  <Project Path="HRService.Infrastructure/HRService.Infrastructure.csproj" />
+  <Project Path="HRService.Tests/HRService.Tests.csproj" />
+</Solution>

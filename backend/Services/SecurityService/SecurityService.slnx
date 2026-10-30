@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/SecurityService/">
+    <Project Path="SecurityService.API/SecurityService.API.csproj" />
+    <Project Path="SecurityService.Application/SecurityService.Application.csproj" />
+    <Project Path="SecurityService.Contracts/SecurityService.Contracts.csproj" />
+    <Project Path="SecurityService.Domain/SecurityService.Domain.csproj" />
+    <Project Path="SecurityService.Infrastructure/SecurityService.Infrastructure.csproj" />
+    <Project Path="SecurityService.Tests/SecurityService.Tests.csproj" />
+  </Folder>
+</Solution>

@@ -1,0 +1,27 @@
+{
+  "ConnectionStrings": {
+    "AuthDb": "Server=localhost;Database=AuthServiceDB;User Id=sa;Password=123580;Encrypt=Mandatory;TrustServerCertificate=True;MultipleActiveResultSets=true",
+    "CompanyDb": "Server=localhost;Database=CompanyServiceDB;User Id=sa;Password=123580;Encrypt=Mandatory;TrustServerCertificate=True;MultipleActiveResultSets=true",
+    "HrDb": "Server=localhost;Database=HRServiceDB;User Id=sa;Password=123580;Encrypt=Mandatory;TrustServerCertificate=True;MultipleActiveResultSets=true",
+    "AttendanceDb": "Server=localhost;Database=AttendanceServiceDB;User Id=sa;Password=123580;Encrypt=Mandatory;TrustServerCertificate=True;MultipleActiveResultSets=true",
+    "LeaveDb": "Server=localhost;Database=LeaveServiceDB;User Id=sa;Password=123580;Encrypt=Mandatory;TrustServerCertificate=True;MultipleActiveResultSets=true",
+    "ShiftDb": "Server=localhost;Database=ShiftServiceDB;User Id=sa;Password=123580;Encrypt=Mandatory;TrustServerCertificate=True;MultipleActiveResultSets=true",
+    "PayrollDb": "Server=localhost;Database=PayrollServiceDB;User Id=sa;Password=123580;Encrypt=Mandatory;TrustServerCertificate=True;MultipleActiveResultSets=true",
+    "NotificationDb": "Server=localhost;Database=NotificationServiceDB;User Id=sa;Password=123580;Encrypt=Mandatory;TrustServerCertificate=True;MultipleActiveResultSets=true",
+    "PunchDataDb": "Server=localhost;Database=PunchDataDB;User Id=sa;Password=123580;Encrypt=Mandatory;TrustServerCertificate=True;MultipleActiveResultSets=true",
+    "RemoteZktecoDb": "Server=localhost;Database=zkteco;User Id=sa;Password=123580;Encrypt=Mandatory;TrustServerCertificate=True;MultipleActiveResultSets=true",
+    "LocalZktecoMdbPath": "C:\\Program Files (x86)\\ZKTeco\\att2000.mdb",
+    "ImportExportDb": "Server=localhost;Database=ImportExportDB;User Id=sa;Password=123580;Encrypt=Mandatory;TrustServerCertificate=True;MultipleActiveResultSets=true",
+    "QualityDb": "Server=localhost;Database=QualityServiceDB;User Id=sa;Password=123580;Encrypt=Mandatory;TrustServerCertificate=True;MultipleActiveResultSets=true",
+    "FinishingDb": "Server=localhost;Database=FinishingServiceDB;User Id=sa;Password=123580;Encrypt=Mandatory;TrustServerCertificate=True;MultipleActiveResultSets=true",
+    "SecurityDb": "Server=localhost;Database=SecurityServiceDB;User Id=sa;Password=123580;Encrypt=Mandatory;TrustServerCertificate=True;MultipleActiveResultSets=true",
+    "AccountsDb": "Server=localhost;Database=AccountsServiceDB;User Id=sa;Password=123580;Encrypt=Mandatory;TrustServerCertificate=True;MultipleActiveResultSets=true",
+    "CuttingDb": "Server=localhost;Database=CuttingServiceDB;User Id=sa;Password=123580;Encrypt=Mandatory;TrustServerCertificate=True;MultipleActiveResultSets=true",
+    "MerchandisingDb": "Server=localhost;Database=MerchandisingServiceDB;User Id=sa;Password=123580;Encrypt=Mandatory;TrustServerCertificate=True;MultipleActiveResultSets=true",
+    "ProcurementDb": "Server=localhost;Database=ProcurementServiceDB;User Id=sa;Password=123580;Encrypt=Mandatory;TrustServerCertificate=True;MultipleActiveResultSets=true",
+    "InventoryDb": "Server=localhost;Database=InventoryServiceDB;User Id=sa;Password=123580;Encrypt=Mandatory;TrustServerCertificate=True;MultipleActiveResultSets=true",
+    "StoreDb": "Server=localhost;Database=StoreServiceDB;User Id=sa;Password=123580;Encrypt=Mandatory;TrustServerCertificate=True;MultipleActiveResultSets=true",
+    "ProductionPlanningDb": "Server=localhost;Database=ProductionPlanningServiceDB;User Id=sa;Password=123580;Encrypt=Mandatory;TrustServerCertificate=True;MultipleActiveResultSets=true",
+    "Redis": "localhost:6379"
+  }
+}

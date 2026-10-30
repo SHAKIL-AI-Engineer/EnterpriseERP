@@ -1,0 +1,39 @@
+flowchart TB
+    subgraph Client
+        UI[hrhub Next.js :3000]
+    end
+
+    subgraph Platform["Platform.Host :5000"]
+        GW[API /api/v1/*]
+        AUTH[AuthService]
+        CO[CompanyService]
+        HR[HRService]
+        ATT[AttendanceService]
+        SH[ShiftService]
+        LV[LeaveService]
+        PR[PayrollService]
+        NT[NotificationService]
+        AC[AccountsService]
+        Others[Quality / Finishing / Security / ...]
+    end
+
+    subgraph GoServices
+        PD[PunchDataService :5050]
+        IE[ImportExportService]
+    end
+
+    subgraph Data
+        SQL[(SQL Server)]
+        Redis[(Redis :6379)]
+        RMQ[(RabbitMQ optional)]
+    end
+
+    UI -->|JWT + X-Company-Id| GW
+    GW --> AUTH & CO & HR & ATT & SH & LV & PR
+    GW -->|YARP proxy| PD & IE
+    ATT -->|HTTP shifts/evaluation| SH
+    PR -->|HTTP approved monthly attendance| ATT
+    PR -->|HTTP employee salary| HR
+    ATT -->|read PunchRecords| PD
+    AUTH & CO & HR & ATT & SH & PR --> SQL
+    PD --> SQL

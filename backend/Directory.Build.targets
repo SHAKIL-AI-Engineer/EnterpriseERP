@@ -1,0 +1,6 @@
+<Project>
+  <!-- Single source of truth: Configuration/connectionstrings.json copied next to appsettings at build/publish. -->
+  <ItemGroup Condition="'$(UsingMicrosoftNETSdkWeb)' == 'true' Or '$(IsTestProject)' == 'true'">
+    <Content Include="$(MSBuildThisFileDirectory)Configuration\connectionstrings.json" Link="connectionstrings.json" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

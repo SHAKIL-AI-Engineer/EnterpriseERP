@@ -1,0 +1,9 @@
+<Solution>
+  <Project Path="../../BuildingBlocks/Erp.BuildingBlocks.Hosting/Erp.BuildingBlocks.Hosting.csproj" />
+  <Project Path="CuttingService.API/CuttingService.API.csproj" />
+  <Project Path="CuttingService.Application/CuttingService.Application.csproj" />
+  <Project Path="CuttingService.Contracts/CuttingService.Contracts.csproj" />
+  <Project Path="CuttingService.Domain/CuttingService.Domain.csproj" />
+  <Project Path="CuttingService.Infrastructure/CuttingService.Infrastructure.csproj" />
+  <Project Path="CuttingService.Tests/CuttingService.Tests.csproj" />
+</Solution>

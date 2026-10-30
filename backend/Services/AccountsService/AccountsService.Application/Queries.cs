@@ -1,0 +1,33 @@
+using AccountsService.Contracts;
+using MediatR;
+
+namespace AccountsService.Application;
+
+public sealed record GetChartOfAccountsQuery(Guid CompanyId) : IRequest<IReadOnlyList<ChartOfAccountDto>>;
+public sealed record GetChartOfAccountByIdQuery(Guid Id) : IRequest<ChartOfAccountDto>;
+public sealed record GetFiscalYearsQuery(Guid CompanyId) : IRequest<IReadOnlyList<FiscalYearDto>>;
+public sealed record GetVouchersQuery(Guid CompanyId, DateOnly? FromDate, DateOnly? ToDate, string? Type) : IRequest<IReadOnlyList<VoucherDto>>;
+public sealed record GetVoucherByIdQuery(Guid Id) : IRequest<VoucherDto>;
+public sealed record GetGeneralLedgerQuery(Guid CompanyId, Guid? AccountId, DateOnly? FromDate, DateOnly? ToDate) : IRequest<IReadOnlyList<GeneralLedgerEntryDto>>;
+public sealed record GetCashBookQuery(Guid CompanyId, DateOnly? FromDate, DateOnly? ToDate) : IRequest<IReadOnlyList<GeneralLedgerEntryDto>>;
+public sealed record GetBankBookQuery(Guid CompanyId, DateOnly? FromDate, DateOnly? ToDate) : IRequest<IReadOnlyList<GeneralLedgerEntryDto>>;
+public sealed record GetDailyExpenseReportQuery(Guid CompanyId, DateOnly Date) : IRequest<FinancialStatementDto>;
+public sealed record GetMonthlyExpenseReportQuery(Guid CompanyId, int Year, int Month) : IRequest<FinancialStatementDto>;
+public sealed record GetTrialBalanceQuery(Guid CompanyId, DateOnly FromDate, DateOnly ToDate) : IRequest<FinancialStatementDto>;
+public sealed record GetProfitLossQuery(Guid CompanyId, DateOnly FromDate, DateOnly ToDate) : IRequest<FinancialStatementDto>;
+public sealed record GetBalanceSheetQuery(Guid CompanyId, DateOnly AsOfDate) : IRequest<FinancialStatementDto>;
+public sealed record GetCashFlowQuery(Guid CompanyId, DateOnly FromDate, DateOnly ToDate) : IRequest<FinancialStatementDto>;
+public sealed record GetCashReceiptsQuery(Guid CompanyId, DateOnly? FromDate, DateOnly? ToDate) : IRequest<IReadOnlyList<CashReceiptDto>>;
+public sealed record GetCashReceiptByIdQuery(Guid Id) : IRequest<CashReceiptDto>;
+public sealed record GetMoneyReceiptsQuery(Guid CompanyId, DateOnly? FromDate, DateOnly? ToDate) : IRequest<IReadOnlyList<MoneyReceiptDto>>;
+public sealed record GetMoneyReceiptByIdQuery(Guid Id) : IRequest<MoneyReceiptDto>;
+public sealed record GetDailyExpensesQuery(Guid CompanyId, DateOnly? FromDate, DateOnly? ToDate) : IRequest<IReadOnlyList<DailyExpenseDto>>;
+public sealed record GetDailyExpenseByIdQuery(Guid Id) : IRequest<DailyExpenseDto>;
+public sealed record GetMoneyRequestsQuery(Guid CompanyId, string? Status) : IRequest<IReadOnlyList<MoneyRequestDto>>;
+public sealed record GetMoneyRequestByIdQuery(Guid Id) : IRequest<MoneyRequestDto>;
+public sealed record GetAdvancePaymentsQuery(Guid CompanyId, DateOnly? FromDate, DateOnly? ToDate) : IRequest<IReadOnlyList<AdvancePaymentDto>>;
+public sealed record GetAdvancePaymentByIdQuery(Guid Id) : IRequest<AdvancePaymentDto>;
+public sealed record GetAdvanceSalaryPaymentsQuery(Guid CompanyId, Guid? EmployeeId) : IRequest<IReadOnlyList<AdvanceSalaryPaymentDto>>;
+public sealed record GetAdvanceSalaryPaymentByIdQuery(Guid Id) : IRequest<AdvanceSalaryPaymentDto>;
+public sealed record GetCompanyMoneyTransfersQuery(Guid? FromCompanyId, Guid? ToCompanyId) : IRequest<IReadOnlyList<CompanyMoneyTransferDto>>;
+public sealed record GetCompanyMoneyTransferByIdQuery(Guid Id) : IRequest<CompanyMoneyTransferDto>;

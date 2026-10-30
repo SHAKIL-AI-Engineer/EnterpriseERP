@@ -1,0 +1,205 @@
+{
+    "divisions": [
+        {
+            "id": "1",
+            "name_en": "Barisal",
+            "name_bn": "বরিশাল"
+        },
+        {
+            "id": "2",
+            "name_en": "Chittagong",
+            "name_bn": "চট্টগ্রাম"
+        },
+        {
+            "id": "3",
+            "name_en": "Dhaka",
+            "name_bn": "ঢাকা"
+        },
+        {
+            "id": "4",
+            "name_en": "Khulna",
+            "name_bn": "খুলনা"
+        },
+        {
+            "id": "5",
+            "name_en": "Mymensingh",
+            "name_bn": "ময়মনসিংহ"
+        },
+        {
+            "id": "6",
+            "name_en": "Rajshahi",
+            "name_bn": "রাজশাহী"
+        },
+        {
+            "id": "7",
+            "name_en": "Rangpur",
+            "name_bn": "রংপুর"
+        },
+        {
+            "id": "8",
+            "name_en": "Sylhet",
+            "name_bn": "সিলেট"
+        }
+    ],
+    "districts": [
+        {
+            "id": "101",
+            "division_id": "3",
+            "name_en": "Dhaka",
+            "name_bn": "ঢাকা"
+        },
+        {
+            "id": "102",
+            "division_id": "3",
+            "name_en": "Gazipur",
+            "name_bn": "গাজীপুর"
+        },
+        {
+            "id": "103",
+            "division_id": "3",
+            "name_en": "Narayanganj",
+            "name_bn": "নারায়ণগঞ্জ"
+        },
+        {
+            "id": "201",
+            "division_id": "2",
+            "name_en": "Chittagong",
+            "name_bn": "চট্টগ্রাম"
+        },
+        {
+            "id": "202",
+            "division_id": "2",
+            "name_en": "Cox's Bazar",
+            "name_bn": "কক্সবাজার"
+        },
+        {
+            "id": "203",
+            "division_id": "2",
+            "name_en": "Comilla",
+            "name_bn": "কুমিল্লা"
+        },
+        {
+            "id": "401",
+            "division_id": "4",
+            "name_en": "Khulna",
+            "name_bn": "খুলনা"
+        },
+        {
+            "id": "402",
+            "division_id": "4",
+            "name_en": "Jessore",
+            "name_bn": "যশোর"
+        },
+        {
+            "id": "601",
+            "division_id": "6",
+            "name_en": "Rajshahi",
+            "name_bn": "রাজশাহী"
+        },
+        {
+            "id": "602",
+            "division_id": "6",
+            "name_en": "Bogra",
+            "name_bn": "বগুড়া"
+        },
+        {
+            "id": "801",
+            "division_id": "8",
+            "name_en": "Sylhet",
+            "name_bn": "সিলেট"
+        }
+    ],
+    "postOffices": [
+        {
+            "id": "1001",
+            "district_id": "101",
+            "thana": "Gulshan",
+            "office": "Gulshan Model Town",
+            "code": "1212"
+        },
+        {
+            "id": "1002",
+            "district_id": "101",
+            "thana": "Dhanmondi",
+            "office": "Dhanmondi",
+            "code": "1209"
+        },
+        {
+            "id": "1003",
+            "district_id": "101",
+            "thana": "Mirpur",
+            "office": "Mirpur",
+            "code": "1216"
+        },
+        {
+            "id": "1004",
+            "district_id": "101",
+            "thana": "Motijheel",
+            "office": "GPO",
+            "code": "1000"
+        },
+        {
+            "id": "1005",
+            "district_id": "102",
+            "thana": "Gazipur Sadar",
+            "office": "Gazipur Head",
+            "code": "1700"
+        },
+        {
+            "id": "1006",
+            "district_id": "102",
+            "thana": "Tongi",
+            "office": "Tongi",
+            "code": "1710"
+        },
+        {
+            "id": "1007",
+            "district_id": "103",
+            "thana": "Narayanganj Sadar",
+            "office": "Narayanganj Head",
+            "code": "1400"
+        },
+        {
+            "id": "2001",
+            "district_id": "201",
+            "thana": "Pahartali",
+            "office": "Pahartali",
+            "code": "4202"
+        },
+        {
+            "id": "2002",
+            "district_id": "201",
+            "thana": "Kotwali",
+            "office": "Chittagong GPO",
+            "code": "4000"
+        },
+        {
+            "id": "2003",
+            "district_id": "202",
+            "thana": "Cox's Bazar Sadar",
+            "office": "Cox's Bazar Head",
+            "code": "4700"
+        },
+        {
+            "id": "4001",
+            "district_id": "401",
+            "thana": "Khulna Sadar",
+            "office": "Khulna GPO",
+            "code": "9000"
+        },
+        {
+            "id": "6001",
+            "district_id": "601",
+            "thana": "Boalia",
+            "office": "Ghoramara",
+            "code": "6100"
+        },
+        {
+            "id": "8001",
+            "district_id": "801",
+            "thana": "Sylhet Sadar",
+            "office": "Sylhet Head",
+            "code": "3100"
+        }
+    ]
+}

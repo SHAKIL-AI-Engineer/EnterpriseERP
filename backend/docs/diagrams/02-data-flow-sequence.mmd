@@ -1,0 +1,25 @@
+sequenceDiagram
+    participant Device as ZKTeco / Manual upload
+    participant PD as PunchDataService
+    participant ATT as AttendanceService
+    participant SH as ShiftService
+    participant HR as HRService
+    participant PR as PayrollService
+    participant UI as hrhub
+
+    Device->>PD: Raw log / device sync
+    PD->>PD: Parse → PunchRecord (dedupe)
+    PD-->>ATT: PunchLogCollected event (optional)
+
+    UI->>ATT: Process daily attendance (company, date)
+    ATT->>HR: Employee list (PunchNumber, EmployeeID)
+    ATT->>PD: PunchRecords by company + date range
+    ATT->>SH: GET shifts/evaluation?companyId&employeeId&date
+    SH-->>ATT: ShiftEvaluationDto (window, policy, holiday/off)
+    ATT->>ATT: DailyAttendance (In/Out, late, OT, status)
+    UI->>ATT: Approve daily / monthly attendance
+
+    UI->>PR: Run monthly payroll
+    PR->>ATT: Approved monthly summary
+    PR->>HR: EmployeeSalary (if not in Payroll DB)
+    PR->>PR: EmployeePayroll (gross, deductions, net)

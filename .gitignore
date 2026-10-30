@@ -1,0 +1,119 @@
+# ==========================================
+# Operating System Files
+# ==========================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ==========================================
+# IDEs and Editors
+# ==========================================
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+.history/
+
+# Visual Studio / Rider (Backend)
+.vs/
+.idea/
+*.user
+*.userosscache
+*.sln.docstates
+*.suo
+*.userprefs
+
+# ==========================================
+# Backend (.NET / C# Microservices)
+# ==========================================
+# Build results
+[Bb]in/
+[Oo]bj/
+[Oo]ut/
+
+# Publish folder
+[Pp]ublish/
+[Pp]ublished/
+
+# NuGet Packages
+*.nupkg
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+*.nuget.props
+*.nuget.targets
+
+# Test Results
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+*.VisualState.xml
+TestResult.xml
+nunit-*.xml
+coverage.json
+*.coverage
+*.coveragexml
+
+# Rider
+.idea/
+*.sln.iml
+
+# ==========================================
+# Frontend (Node.js / Next.js / React)
+# ==========================================
+# Node modules
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Next.js
+.next/
+out/
+build/
+.swc/
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# Testing
+coverage/
+
+# Vercel
+.vercel/
+
+# ==========================================
+# Logs, Environment, and Misc
+# ==========================================
+# Logs
+logs/
+*.log
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.env
+
+# Temporary files
+tmp/
+temp/
+hrhub/tmp/
+
+# Certificates and Secrets
+*.pfx
+*.p12
+*.snk
+
+# Docker
+docker-compose.override.yml

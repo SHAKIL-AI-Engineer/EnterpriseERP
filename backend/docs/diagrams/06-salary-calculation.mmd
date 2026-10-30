@@ -1,0 +1,29 @@
+flowchart TB
+    subgraph Inputs
+        POL[PayrollPolicyTemplate + Company assignment]
+        SAL[EmployeeSalary]
+        ATT[Approved AttendanceSummary]
+        ADV[Advances / loans / manual bills]
+    end
+
+    subgraph Calc["PayrollCalculationService"]
+        MODE{SalaryCalculationType}
+        MODE -->|Monthly| M[Gross - absent - LWP]
+        MODE -->|Daily| D[Per-day x present days]
+        MODE -->|Hourly| H[Hourly rate x hours]
+        OT[OvertimeCalculationService]
+        BON[BonusCalculationService]
+        M & D & H --> OT
+        OT --> NET[Net = earnings - deductions]
+        BON --> NET
+    end
+
+    subgraph Output
+        EP[EmployeePayroll per month]
+    end
+
+    POL --> Calc
+    SAL --> Calc
+    ATT --> Calc
+    ADV --> Calc
+    Calc --> EP

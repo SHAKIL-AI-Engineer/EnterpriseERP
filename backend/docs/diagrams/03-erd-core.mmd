@@ -1,0 +1,109 @@
+erDiagram
+    Company ||--o{ Employee : employs
+    Company ||--o{ Shift : defines
+    Company ||--o{ EmployeeShiftAssignment : assigns
+    Company ||--o{ TemporaryShiftAssignment : overrides
+    Shift ||--|| ShiftRule : has
+    Shift ||--o{ ShiftBreak : has
+    Employee ||--o{ EmployeeShiftAssignment : roster
+    Employee ||--o{ TemporaryShiftAssignment : temp
+    Employee ||--o{ DailyAttendance : daily
+    Shift ||--o{ DailyAttendance : evaluated_on
+    Employee ||--o{ EmployeeSalary : payroll_salary
+    Employee ||--o{ EmployeePayroll : monthly_pay
+    CompanyPayrollPolicyAssignment }o--|| PayrollPolicyTemplate : uses
+    PunchMachine ||--o{ PunchRecord : generates
+    PunchLogFile ||--o{ PunchRecord : contains
+    AppUser ||--o{ UserCompanyAccess : tenant
+    AppRole ||--o{ AppUser : roles
+
+    Company {
+        guid Id PK
+        string CompanyNameEn
+    }
+
+    Employee {
+        guid Id PK
+        guid CompanyId
+        int PunchNumber
+        string EmployeeID
+        string FullName
+        bool IsOtEnabled
+    }
+
+    Shift {
+        guid Id PK
+        guid CompanyId
+        string ShiftName
+        time StartTime
+        time EndTime
+        bool IsCrossDay
+        bool IsDefault
+    }
+
+    ShiftRule {
+        guid Id PK
+        guid ShiftId
+        int LateAfterMinutes
+        int AllowOvertime
+        int MaximumOvertimeMinutes
+    }
+
+    EmployeeShiftAssignment {
+        guid Id PK
+        guid EmployeeId
+        guid ShiftId
+        date EffectiveFrom
+        bool IsCurrent
+    }
+
+    TemporaryShiftAssignment {
+        guid Id PK
+        guid EmployeeId
+        guid ShiftId
+        date ShiftDate
+    }
+
+    PunchRecord {
+        guid Id PK
+        int CompanyId
+        int PunchNumber
+        datetime PunchTime
+        guid DeviceId
+    }
+
+    DailyAttendance {
+        guid Id PK
+        guid CompanyId
+        guid EmployeeId
+        date AttendanceDate
+        guid ShiftId
+        datetime InTime
+        datetime OutTime
+        int LateMinutes
+        int OvertimeMinutes
+        string Status
+        bool IsApproved
+    }
+
+    EmployeeSalary {
+        guid Id PK
+        guid EmployeeId
+        decimal GrossSalary
+        string SalaryCalculationType
+    }
+
+    EmployeePayroll {
+        guid Id PK
+        guid EmployeeId
+        int YearNo
+        int MonthNo
+        decimal NetSalary
+        decimal OvertimeAmount
+    }
+
+    AppUser {
+        guid Id PK
+        string UserName
+        string Email
+    }

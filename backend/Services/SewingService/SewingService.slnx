@@ -1,0 +1,9 @@
+<Solution>
+  <Project Path="../../BuildingBlocks/Erp.BuildingBlocks.Hosting/Erp.BuildingBlocks.Hosting.csproj" />
+  <Project Path="SewingService.API/SewingService.API.csproj" />
+  <Project Path="SewingService.Application/SewingService.Application.csproj" />
+  <Project Path="SewingService.Contracts/SewingService.Contracts.csproj" />
+  <Project Path="SewingService.Domain/SewingService.Domain.csproj" />
+  <Project Path="SewingService.Infrastructure/SewingService.Infrastructure.csproj" />
+  <Project Path="SewingService.Tests/SewingService.Tests.csproj" />
+</Solution>

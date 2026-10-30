@@ -1,0 +1,699 @@
+basePath: /
+definitions:
+  github_com_enterprise-erp_importexport_internal_dto.AddressImportResult:
+    properties:
+      countriesCreated:
+        type: integer
+      countriesUpdated:
+        type: integer
+      districtsCreated:
+        type: integer
+      districtsUpdated:
+        type: integer
+      divisionsCreated:
+        type: integer
+      divisionsUpdated:
+        type: integer
+      errors:
+        items:
+          $ref: '#/definitions/github_com_enterprise-erp_importexport_internal_dto.RowError'
+        type: array
+      failedRows:
+        type: integer
+      postOfficesCreated:
+        type: integer
+      postOfficesUpdated:
+        type: integer
+      successRows:
+        type: integer
+      thanasCreated:
+        type: integer
+      thanasUpdated:
+        type: integer
+      totalRows:
+        type: integer
+    type: object
+  github_com_enterprise-erp_importexport_internal_dto.CompanyOrganogramImportResult:
+    properties:
+      companiesCreated:
+        type: integer
+      departmentsCreated:
+        type: integer
+      departmentsUpdated:
+        type: integer
+      designationsCreated:
+        type: integer
+      designationsUpdated:
+        type: integer
+      errors:
+        items:
+          $ref: '#/definitions/github_com_enterprise-erp_importexport_internal_dto.RowError'
+        type: array
+      failedRows:
+        type: integer
+      linesCreated:
+        type: integer
+      linesUpdated:
+        type: integer
+      sectionsCreated:
+        type: integer
+      sectionsUpdated:
+        type: integer
+      successRows:
+        type: integer
+      totalRows:
+        type: integer
+    type: object
+  github_com_enterprise-erp_importexport_internal_dto.ConfirmImportRequest:
+    properties:
+      sessionId:
+        type: string
+    required:
+    - sessionId
+    type: object
+  github_com_enterprise-erp_importexport_internal_dto.ExportJobDTO:
+    properties:
+      createdAt:
+        type: string
+      filePath:
+        type: string
+      format:
+        type: string
+      id:
+        type: string
+      moduleName:
+        type: string
+      status:
+        type: string
+    type: object
+  github_com_enterprise-erp_importexport_internal_dto.ImportJobDTO:
+    properties:
+      companyId:
+        type: string
+      createdAt:
+        type: string
+      errorFilePath:
+        type: string
+      failedRows:
+        type: integer
+      id:
+        type: string
+      moduleName:
+        type: string
+      status:
+        type: string
+      successRows:
+        type: integer
+      totalRows:
+        type: integer
+    type: object
+  github_com_enterprise-erp_importexport_internal_dto.ImportPreviewResult:
+    properties:
+      errors:
+        items:
+          $ref: '#/definitions/github_com_enterprise-erp_importexport_internal_dto.RowError'
+        type: array
+      errorsTruncated:
+        type: boolean
+      invalidRows:
+        type: integer
+      sampleValid:
+        items: {}
+        type: array
+      sessionId:
+        type: string
+      totalRows:
+        type: integer
+      validRows:
+        type: integer
+    type: object
+  github_com_enterprise-erp_importexport_internal_dto.RowError:
+    properties:
+      column:
+        type: string
+      message:
+        type: string
+      row:
+        type: integer
+    type: object
+  github_com_enterprise-erp_importexport_internal_response.ErrorDetail:
+    properties:
+      code:
+        type: string
+      message:
+        type: string
+    type: object
+  internal_handlers.APIResponseAddressImport:
+    properties:
+      data:
+        $ref: '#/definitions/github_com_enterprise-erp_importexport_internal_dto.AddressImportResult'
+      errors:
+        items:
+          $ref: '#/definitions/github_com_enterprise-erp_importexport_internal_response.ErrorDetail'
+        type: array
+      success:
+        example: true
+        type: boolean
+      traceId:
+        type: string
+    type: object
+  internal_handlers.APIResponseCompanyOrganogramImport:
+    properties:
+      data:
+        $ref: '#/definitions/github_com_enterprise-erp_importexport_internal_dto.CompanyOrganogramImportResult'
+      errors:
+        items:
+          $ref: '#/definitions/github_com_enterprise-erp_importexport_internal_response.ErrorDetail'
+        type: array
+      success:
+        example: true
+        type: boolean
+      traceId:
+        type: string
+    type: object
+  internal_handlers.APIResponseError:
+    properties:
+      errors:
+        items:
+          $ref: '#/definitions/github_com_enterprise-erp_importexport_internal_response.ErrorDetail'
+        type: array
+      success:
+        example: false
+        type: boolean
+      traceId:
+        type: string
+    type: object
+  internal_handlers.APIResponseExportJobList:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/github_com_enterprise-erp_importexport_internal_dto.ExportJobDTO'
+        type: array
+      errors:
+        items:
+          $ref: '#/definitions/github_com_enterprise-erp_importexport_internal_response.ErrorDetail'
+        type: array
+      success:
+        example: true
+        type: boolean
+      traceId:
+        type: string
+    type: object
+  internal_handlers.APIResponseHealth:
+    properties:
+      data:
+        additionalProperties:
+          type: string
+        type: object
+      errors:
+        items:
+          $ref: '#/definitions/github_com_enterprise-erp_importexport_internal_response.ErrorDetail'
+        type: array
+      success:
+        example: true
+        type: boolean
+      traceId:
+        type: string
+    type: object
+  internal_handlers.APIResponseImportJob:
+    properties:
+      data:
+        $ref: '#/definitions/github_com_enterprise-erp_importexport_internal_dto.ImportJobDTO'
+      errors:
+        items:
+          $ref: '#/definitions/github_com_enterprise-erp_importexport_internal_response.ErrorDetail'
+        type: array
+      success:
+        example: true
+        type: boolean
+      traceId:
+        type: string
+    type: object
+  internal_handlers.APIResponseImportJobList:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/github_com_enterprise-erp_importexport_internal_dto.ImportJobDTO'
+        type: array
+      errors:
+        items:
+          $ref: '#/definitions/github_com_enterprise-erp_importexport_internal_response.ErrorDetail'
+        type: array
+      success:
+        example: true
+        type: boolean
+      traceId:
+        type: string
+    type: object
+  internal_handlers.APIResponseImportPreview:
+    properties:
+      data:
+        $ref: '#/definitions/github_com_enterprise-erp_importexport_internal_dto.ImportPreviewResult'
+      errors:
+        items:
+          $ref: '#/definitions/github_com_enterprise-erp_importexport_internal_response.ErrorDetail'
+        type: array
+      success:
+        example: true
+        type: boolean
+      traceId:
+        type: string
+    type: object
+  internal_handlers.ExportRequest:
+    properties:
+      filters:
+        additionalProperties: {}
+        type: object
+      format:
+        example: Excel
+        type: string
+    type: object
+info:
+  contact:
+    name: EnterpriseERP Platform Team
+  description: Bulk import/export microservice for EnterpriseERP (Excel, CSV). Supports
+    preview/confirm import, templates, and job history.
+  title: ImportExportService API
+  version: "1.0"
+paths:
+  /api/v1/import-export/address/demo-format:
+    get:
+      description: Downloads an Excel workbook showing how to import Country, Division,
+        District, Thana, Post Office, and Post Code relationships.
+      produces:
+      - application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: file
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/internal_handlers.APIResponseError'
+      security:
+      - BearerAuth: []
+      summary: Download address Excel demo format
+      tags:
+      - address
+  /api/v1/import-export/address/import:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Creates or updates Countries, Divisions, Districts, Thanas/Upazilas,
+        and Post Offices in CompanyServiceDB from an Excel file.
+      parameters:
+      - description: Excel (.xlsx) file using the Address demo format
+        in: formData
+        name: file
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/internal_handlers.APIResponseAddressImport'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/internal_handlers.APIResponseError'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/internal_handlers.APIResponseError'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/internal_handlers.APIResponseError'
+      security:
+      - BearerAuth: []
+      summary: Import address hierarchy from Excel
+      tags:
+      - address
+  /api/v1/import-export/company-organogram/demo-format:
+    get:
+      description: Downloads an Excel workbook showing how to import Departments,
+        Sections, Designations, and Lines.
+      produces:
+      - application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: file
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/internal_handlers.APIResponseError'
+      security:
+      - BearerAuth: []
+      summary: Download company organogram Excel demo format
+      tags:
+      - company-organogram
+  /api/v1/import-export/company-organogram/export:
+    get:
+      description: Exports current Company, Department, Section, Designation, and
+        Line relationships in the same Excel format used for import.
+      parameters:
+      - description: Filter by company English name
+        in: query
+        name: companyName
+        type: string
+      produces:
+      - application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: file
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/internal_handlers.APIResponseError'
+      security:
+      - BearerAuth: []
+      summary: Export company organogram Excel
+      tags:
+      - company-organogram
+  /api/v1/import-export/company-organogram/import:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Creates or updates Companies (when missing), Departments, Sections,
+        Designations, and Lines in CompanyServiceDB from an Excel file.
+      parameters:
+      - description: Excel (.xlsx) file using the Company Organogram demo format
+        in: formData
+        name: file
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/internal_handlers.APIResponseCompanyOrganogramImport'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/internal_handlers.APIResponseError'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/internal_handlers.APIResponseError'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/internal_handlers.APIResponseError'
+      security:
+      - BearerAuth: []
+      summary: Import company organogram from Excel
+      tags:
+      - company-organogram
+  /api/v1/import-export/export-jobs:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/internal_handlers.APIResponseExportJobList'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/internal_handlers.APIResponseError'
+      security:
+      - BearerAuth: []
+      summary: List export jobs
+      tags:
+      - export-jobs
+  /api/v1/import-export/export-jobs/{id}/download:
+    get:
+      parameters:
+      - description: Job id (UUID)
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/octet-stream
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: file
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/internal_handlers.APIResponseError'
+      security:
+      - BearerAuth: []
+      summary: Download export file
+      tags:
+      - export-jobs
+  /api/v1/import-export/export/{module}:
+    post:
+      consumes:
+      - application/json
+      description: Generate Excel or CSV export for the module. PDF is not supported.
+      parameters:
+      - description: Module name
+        in: path
+        name: module
+        required: true
+        type: string
+      - description: Export options
+        in: body
+        name: body
+        schema:
+          $ref: '#/definitions/internal_handlers.ExportRequest'
+      produces:
+      - application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: file
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/internal_handlers.APIResponseError'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/internal_handlers.APIResponseError'
+      security:
+      - BearerAuth: []
+      summary: Export data
+      tags:
+      - export
+  /api/v1/import-export/import-jobs:
+    get:
+      parameters:
+      - description: Filter by module
+        in: query
+        name: module
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/internal_handlers.APIResponseImportJobList'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/internal_handlers.APIResponseError'
+      security:
+      - BearerAuth: []
+      summary: List import jobs
+      tags:
+      - import-jobs
+  /api/v1/import-export/import-jobs/{id}:
+    get:
+      parameters:
+      - description: Job id (UUID)
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/internal_handlers.APIResponseImportJob'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/internal_handlers.APIResponseError'
+      security:
+      - BearerAuth: []
+      summary: Get import job
+      tags:
+      - import-jobs
+  /api/v1/import-export/import-jobs/{id}/error-file:
+    get:
+      parameters:
+      - description: Job id (UUID)
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: file
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/internal_handlers.APIResponseError'
+      security:
+      - BearerAuth: []
+      summary: Download import error file
+      tags:
+      - import-jobs
+  /api/v1/import-export/import/{module}/confirm:
+    post:
+      consumes:
+      - application/json
+      description: Commit a preview session as an import job (sync or queued for large
+        files).
+      parameters:
+      - description: Module name
+        in: path
+        name: module
+        required: true
+        type: string
+      - description: Preview session id
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_enterprise-erp_importexport_internal_dto.ConfirmImportRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/internal_handlers.APIResponseImportJob'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/internal_handlers.APIResponseError'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/internal_handlers.APIResponseError'
+      security:
+      - BearerAuth: []
+      summary: Confirm import
+      tags:
+      - import
+  /api/v1/import-export/import/{module}/preview:
+    post:
+      consumes:
+      - multipart/form-data
+      description: 'Upload an Excel file, validate rows, and return a preview session.
+        Modules: employee, attendance, payroll, shift, leave.'
+      parameters:
+      - description: Module name
+        enum:
+        - employee
+        - attendance
+        - payroll
+        - shift
+        - leave
+        in: path
+        name: module
+        required: true
+        type: string
+      - description: Excel (.xlsx) file
+        in: formData
+        name: file
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/internal_handlers.APIResponseImportPreview'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/internal_handlers.APIResponseError'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/internal_handlers.APIResponseError'
+      security:
+      - BearerAuth: []
+      summary: Preview import file
+      tags:
+      - import
+  /api/v1/import-export/templates/{module}/download:
+    get:
+      description: Returns an Excel template for employee, attendance, or payroll
+        imports.
+      parameters:
+      - description: Module name
+        enum:
+        - employee
+        - attendance
+        - payroll
+        in: path
+        name: module
+        required: true
+        type: string
+      produces:
+      - application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: file
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/internal_handlers.APIResponseError'
+      security:
+      - BearerAuth: []
+      summary: Download import template
+      tags:
+      - templates
+  /health:
+    get:
+      description: Liveness probe and SQL Server ping.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/internal_handlers.APIResponseHealth'
+      summary: Health check
+      tags:
+      - health
+schemes:
+- http
+- https
+securityDefinitions:
+  BearerAuth:
+    description: 'JWT from AuthService. Format: Bearer <token> (requires companyId
+      claim).'
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

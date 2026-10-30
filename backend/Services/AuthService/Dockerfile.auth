@@ -1,0 +1,20 @@
+FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
+WORKDIR /src
+COPY AuthService.Api/AuthService.Api.csproj AuthService.Api/
+COPY AuthService.Application/AuthService.Application.csproj AuthService.Application/
+COPY AuthService.Contracts/AuthService.Contracts.csproj AuthService.Contracts/
+COPY AuthService.Infrastructure/AuthService.Infrastructure.csproj AuthService.Infrastructure/
+RUN dotnet restore AuthService.Api/AuthService.Api.csproj
+COPY AuthService.Api/ AuthService.Api/
+COPY AuthService.Application/ AuthService.Application/
+COPY AuthService.Contracts/ AuthService.Contracts/
+COPY AuthService.Infrastructure/ AuthService.Infrastructure/
+WORKDIR /src/AuthService.Api
+RUN dotnet publish -c Release -o /app/publish --no-restore
+
+FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS final
+WORKDIR /app
+EXPOSE 8080
+ENV ASPNETCORE_URLS=http://+:8080
+COPY --from=build /app/publish .
+ENTRYPOINT ["dotnet", "AuthService.Api.dll"]

@@ -1,0 +1,6 @@
+import Link from "next/link";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+export default function MonthlyReportsPage() {
+ const reports = [["Monthly attendance", "/management/attendance/job-card", "Review actual employee attendance and overtime for the selected month."], ["Monthly salary sheet", "/management/payroll/monthly-sheet", "View calculated payroll, earnings and deductions by company and month."], ["Salary summary", "/management/payroll/salary-summary", "Compare saved payroll totals by department."], ["Bank payment sheet", "/management/payroll/bank-sheet", "Review the bank payment details generated from payroll."]];
+ return <div className="space-y-6 p-6"><h1 className="text-2xl font-semibold">Monthly HR reports</h1><p className="text-muted-foreground">Choose a report, then select the company and reporting period. Totals come from saved attendance and payroll records.</p><div className="grid gap-4 md:grid-cols-2">{reports.map(([title,path,description])=><Card key={path}><CardHeader><CardTitle><Link className="underline underline-offset-4" href={path}>{title}</Link></CardTitle></CardHeader><CardContent>{description}</CardContent></Card>)}</div></div>;
+}

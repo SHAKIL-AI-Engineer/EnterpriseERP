@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="CompanyService.Api/CompanyService.Api.csproj" />
+  <Project Path="CompanyService.Application/CompanyService.Application.csproj" />
+  <Project Path="CompanyService.Domain/CompanyService.Domain.csproj" />
+  <Project Path="CompanyService.Infrastructure/CompanyService.Infrastructure.csproj" />
+</Solution>
